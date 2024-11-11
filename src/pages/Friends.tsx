@@ -13,7 +13,7 @@ import { toast } from "react-toastify";
 import levelConfig from "@/config/level-config";
 
 const shareMessage = encodeURI(
-  "Play Crypto Coin with me!"
+  "Play Tappy Dino with me!"
 );
 
 export default function Friends() {
@@ -38,7 +38,17 @@ export default function Friends() {
   return (
     <div className="flex flex-col justify-end bg-cover flex-1" style={{backgroundImage: `url(${levelConfig.bg[user?.level?.level || 1]})`,}}>
       <div className="flex flex-col flex-1 w-full h-full px-6 py-8 pb-24 mt-12 modal-body">
-        <h1 className="text-2xl font-bold text-center uppercase">Friends</h1>
+        <h1
+         style={{
+         fontFamily: "'ZCOOL KuaiLe', sans-serif",
+         fontSize: '1.0rem',
+         textAlign: 'center',
+         marginTop: '1rem',
+         color: '#ffffff',
+         }}
+         >
+         FRIENDS
+         </h1>
         <p className="mt-2.5 font-medium text-center">
           You and your friend will receive bonuses.
         </p>
