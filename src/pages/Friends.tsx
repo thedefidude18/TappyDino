@@ -41,7 +41,7 @@ export default function Friends() {
         <h1
          style={{
          fontFamily: "'ZCOOL KuaiLe', sans-serif",
-         fontSize: '1.0rem',
+         fontSize: '1.5rem',
          textAlign: 'center',
          marginTop: '1rem',
          color: '#ffffff',
@@ -49,9 +49,17 @@ export default function Friends() {
          >
          FRIENDS
          </h1>
-        <p className="mt-2.5 font-medium text-center">
-          You and your friend will receive bonuses.
-        </p>
+           <h1
+         style={{
+         fontFamily: "'ZCOOL KuaiLe', sans-serif",
+         fontSize: '1.0rem',
+         textAlign: 'center',
+         marginTop: '1rem',
+         color: '#ffffff',
+         }}
+         >
+         You and your friends will receive DINOH bonus!
+         </h1>
         <div className="mt-4 space-y-2">
           <button className="flex items-center w-full gap-4 px-4 py-2 bg-white/10 rounded-xl">
             <img
