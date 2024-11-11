@@ -25,67 +25,19 @@ export default function Wallet() {
     onError: () => toast.error("Request rejected"),
   });
 
-  const styles = {
-    container: {
-      display: "flex",
-      flexDirection: "column",
-      justifyContent: "end",
-      flex: 1,
-      backgroundImage: `url(${levelConfig.bg[user?.level?.level || 1]})`,
-      backgroundSize: "cover",
-    },
-    heading: {
-      marginTop: "1rem",
-      fontSize: "2rem",
-      fontWeight: "bold",
-      textAlign: "center",
-      textTransform: "uppercase",
-    },
-    subheading: {
-      marginTop: "0.625rem",
-      fontWeight: "500",
-      textAlign: "center",
-    },
-    drawerButton: {
-      display: "flex",
-      alignItems: "center",
-      justifyContent: "center",
-      padding: "0.5rem",
-      borderRadius: "0.5rem",
-      fontWeight: "bold",
-      fontSize: "0.875rem",
-      width: "100%",
-      background: "linear-gradient(98deg,#35a6eb_3.58%,#309adb_101.32%)",
-    },
-    textButton: {
-      color: "#999a9c",
-      backgroundColor: "#ffffff1a",
-      padding: "0.5rem 1rem",
-      borderRadius: "0.75rem",
-      display: "flex",
-      alignItems: "center",
-    },
-    icon: {
-      width: "1.5rem",
-      height: "1.5rem",
-      marginRight: "0.5rem",
-    },
-  };
-
   return (
-    <div style={styles.container}>
-      <div className="modal-body" style={{ padding: "1.5rem", flex: 1, marginTop: "3rem" }}>
-        <img
-          src="/images/toncoin.png"
-          alt="toncoin"
-          style={{ width: "8rem", height: "8rem", margin: "auto" }}
-        />
-        <h1 style={styles.heading}>TON Wallet</h1>
-        <p style={styles.subheading}>Connect your TON wallet</p>
+    <div
+      className="flex flex-col justify-end flex-1 bg-cover"
+      style={{ backgroundImage: `url(${levelConfig.bg[user?.level?.level || 1]})` }}
+    >
+      <div className="flex flex-col flex-1 w-full h-full px-6 py-8 pb-24 mt-12 modal-body">
+        <img src="/images/toncoin.png" alt="toncoin" className="object-contain w-32 h-32 mx-auto" />
+        <h1 className="mt-4 text-2xl font-bold text-center uppercase">TON Wallet</h1>
+        <p className="mt-2.5 font-medium text-center">Connect your TON wallet</p>
 
-        <div style={{ marginTop: "1rem", gap: "0.5rem" }}>
+        <div className="mt-4 space-y-2">
           <ListItem
-            title={"Pay"}
+            title="Pay"
             image="/images/wallet.png"
             onClick={async () => {
               if (network !== CHAIN.MAINNET) {
@@ -96,53 +48,67 @@ export default function Wallet() {
             }}
           />
           <ListItem
-            title={"Connect your TON Wallet"}
+            title="Connect your TON Wallet"
             image="/images/wallet.png"
             onClick={() => setOpenDrawer(true)}
-            action={isConnected && <CheckIcon style={{ color: "green" }} />}
+            action={isConnected && <CheckIcon className="text-green-500" />}
           />
         </div>
       </div>
 
       <Drawer open={tonPay.isLoading} hideClose>
-        <div style={{ display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center" }}>
-          <Loader2Icon className="animate-spin" style={{ width: "3rem", height: "3rem", color: "#007bff" }} />
-          <p style={{ marginTop: "1rem" }}>Waiting for transaction to complete processing...</p>
+        <div className="flex flex-col items-center justify-center">
+          <Loader2Icon className="w-12 h-12 animate-spin text-blue-500" />
+          <p className="mt-4">Waiting for transaction to complete processing...</p>
         </div>
       </Drawer>
 
       <Drawer open={openDrawer} onOpenChange={setOpenDrawer}>
-        <div style={{ marginBottom: "1rem", textAlign: "center" }}>
-          <img src="/images/wallet.png" alt="wallet" style={{ width: "7rem", height: "7rem", margin: "auto" }} />
+        <div className="mb-4">
+          <img src="/images/wallet.png" alt="wallet" className="object-contain mx-auto w-28 h-28" />
         </div>
-        <h2 style={{ fontSize: "1.875rem", fontWeight: "bold", textAlign: "center", marginBottom: "0.75rem" }}>
+        <h2 className="mb-3 text-3xl font-bold text-center">
           {isConnected ? "Your TON wallet is connected" : "Connect your TON wallet"}
         </h2>
-        <p style={{ margin: "0 auto", fontSize: "0.875rem", textAlign: "center", maxWidth: "18rem" }}>
+        <p className="mx-auto mb-6 text-sm text-center max-w-xs">
           {isConnected
             ? "You can disconnect it or copy wallet address"
             : "Connect your crypto wallet. If you don't have one, create one in your Telegram account"}
         </p>
         {isConnected ? (
-          <div style={{ display: "flex", gap: "0.5rem" }}>
-            <button style={styles.textButton} onClick={() => tonConnectUI.disconnect()}>
-              <XIcon style={{ width: "1.5rem", height: "1.5rem" }} />
+          <div className="flex gap-2">
+            <button
+              className="bg-[#ffffff1a] text-[#999a9c] rounded-xl text-sm px-4 h-11 flex items-center"
+              onClick={() => tonConnectUI.disconnect()}
+            >
+              <XIcon className="w-6 h-6" />
             </button>
-            <button style={{ ...styles.textButton, flex: 1 }} onClick={() => {
-              copy(tonAddress);
-              toast.success("Copied to clipboard");
-            }}>
-              <Wallet2Icon style={styles.icon} />
-              <span>{tonAddress.slice(0, 8)}...{tonAddress.slice(-8)}</span>
-              <CopyIcon style={{ marginLeft: "auto", width: "1.25rem", height: "1.25rem" }} />
+            <button
+              className="flex-1 bg-[#ffffff1a] text-[#999a9c] rounded-xl text-sm px-4 h-11 flex items-center"
+              onClick={() => {
+                copy(tonAddress);
+                toast.success("Copied to clipboard");
+              }}
+            >
+              <Wallet2Icon className="w-6 h-6 mr-2" />
+              <span className="font-semibold text-white">
+                {tonAddress.slice(0, 8)}...
+                {tonAddress.slice(-8)}
+              </span>
+              <div className="ml-auto">
+                <CopyIcon className="w-5 h-5" />
+              </div>
             </button>
           </div>
         ) : (
-          <button style={styles.drawerButton} onClick={() => {
-            tonConnectUI.openModal();
-            setOpenDrawer(false);
-          }}>
-            <Wallet2Icon style={styles.icon} />
+          <button
+            className="flex items-center justify-center py-0 px-3 rounded-xl font-bold h-11 text-sm w-full bg-gradient-to-r from-[#35a6eb] to-[#309adb]"
+            onClick={() => {
+              tonConnectUI.openModal();
+              setOpenDrawer(false);
+            }}
+          >
+            <Wallet2Icon className="w-6 h-6 mr-2" />
             Connect your TON wallet
           </button>
         )}
@@ -150,4 +116,3 @@ export default function Wallet() {
     </div>
   );
 }
-
