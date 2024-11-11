@@ -32,9 +32,10 @@
       rgba(234, 0, 0, 0) 17%
     ),
     rgba(0, 0, 0, 0.8);
-  box-shadow: 0px 0px 82px 0px purple,
-    0px 1px 0px 0px purple inset,
-    0px 2px 2px 0px purple inset;
+  box-shadow: 
+  0px 0px 82px 0px rgba(128, 0, 128, 0.5),
+  0px 1px 0px 0px rgba(128, 0, 128, 0.3) inset,
+  0px 2px 2px 0px rgba(128, 0, 128, 0.3) inset;
   backdrop-filter: blur(6px);
 }
 
