@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import ListItem from "@/components/ListItem";
 import CheckIcon from "@/components/icons/CheckIcon";
 import Drawer from "@/components/ui/drawer";
@@ -20,22 +21,26 @@ export default function Wallet() {
 
   const user = useUserStore();
 
-  console.log(tonConnectUI, "============tonConnectUI=======")
+  // Dynamically load the font
+  useEffect(() => {
+    const link = document.createElement("link");
+    link.href = "https://fonts.googleapis.com/css2?family=Zcool+Kualie&display=swap";
+    link.rel = "stylesheet";
+    document.head.appendChild(link);
+
+    return () => {
+      document.head.removeChild(link);
+    };
+  }, []);
 
   const tonPay = useTonPay({
     onSuccess: () => toast.success("Your transaction has been completed"),
     onError: () => toast.error("Request rejected"),
   });
 
-  // useEffect(() => {
-  //   if (tonAddress) {
-  //     $http.post("/clicker/set-ton-wallet", { ton_wallet: tonAddress });
-  //   }
-  // }, [tonAddress]);
-
   return (
     <div className="flex flex-col justify-end bg-cover flex-1" style={{backgroundImage: `url(${levelConfig.bg[user?.level?.level || 1]})`,}}>
-      <div className="flex flex-col flex-1 w-full h-full px-6 py-8 pb-24 mt-12 modal-body">
+      <div className="flex flex-col flex-1 w-full h-full px-6 py-8 pb-24 mt-12 modal-body" style={{ fontFamily: 'Zcool Kualie, sans-serif' }}>
         <img
           src="/images/toncoin.png"
           alt="toncoin"
@@ -72,7 +77,7 @@ export default function Wallet() {
         <div className="flex flex-col items-center justify-center">
           <Loader2Icon className="w-12 h-12 animate-spin text-primary" />
           <p className="mt-4">
-            Waiting for transaction to complete proccessing...
+            Waiting for transaction to complete processing...
           </p>
         </div>
       </Drawer>
