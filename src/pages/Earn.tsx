@@ -49,19 +49,32 @@ export default function Earn() {
   if (isLoading) return <LoadingPage />;
 
   return (
-    <div className="flex flex-col justify-end bg-cover flex-1" style={{backgroundImage: `url(${levelConfig.bg[user?.level?.level || 1]})`,}}>
+    <div
+  className="flex flex-col justify-end bg-cover flex-1"
+  style={{
+    background: 'linear-gradient(to bottom, #575EFF, rgba(14, 203, 255, 0.94))'
+  }}
+>
       <div className="flex flex-col flex-1 w-full h-full px-6 py-8 pb-24 mt-12 modal-body">
         <img
           src="/images/coins.png"
           alt="coins"
           className="object-contain w-32 h-32 mx-auto"
         />
-        <h1 className="mt-4 text-2xl font-bold text-center uppercase">
-          EARN MORE COINS
-        </h1>
+        <h1
+         style={{
+         fontFamily: "'ZCOOL KuaiLe', sans-serif",
+         fontSize: '1.0rem',
+         textAlign: 'center',
+         marginTop: '1rem',
+         color: '#ffffff',
+         }}
+         >
+         EARN MORE DINOH
+         </h1>
         {videoTasks.length > 0 && (
           <>
-            <p className="mt-2.5 font-medium text-center">Crypto Coin YouTube</p>
+            <p className="mt-2.5 font-medium text-center">Dino Horizon YouTube</p>
             <div className="mt-4 space-y-2">
               {videoTasks.map((item) => (
                 <ListItem
@@ -86,7 +99,7 @@ export default function Earn() {
             </div>
           </>
         )}
-        <p className="mt-8 font-medium text-center">Daily Tasks</p>
+        <p className="mt-8 font-medium text-center">Tappy Daily Tasks</p>
         <div className="mt-4 space-y-2">
           <ListItem
             title={"Daily reward"}
