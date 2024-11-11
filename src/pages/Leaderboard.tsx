@@ -41,7 +41,12 @@ export default function Leaderboard() {
   }, []);
 
   return (
-    <div className="flex flex-col justify-end bg-cover flex-1" style={{backgroundImage: `url(${levelConfig.bg[userData?.level?.level || 1]})`,}}>
+    <div
+  className="flex flex-col justify-end bg-cover flex-1"
+  style={{
+    background: 'linear-gradient(to bottom, #575EFF, rgba(14, 203, 255, 0.94))'
+  }}
+>
       <div className="flex flex-col flex-1 w-full h-full px-6 py-8 pb-24 mt-12 modal-body">
         <div className="">
           <Swiper
