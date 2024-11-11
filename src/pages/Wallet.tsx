@@ -55,11 +55,19 @@ export default function Wallet() {
          color: '#ffffff',
          }}
          >
-         Upgrade
+         WALLET
          </h1>
-        <p className="mt-2.5 font-medium text-center">
-          Connect your TON wallet
-        </p>
+        <h1
+         style={{
+         fontFamily: "'ZCOOL KuaiLe', sans-serif",
+         fontSize: '1.0rem',
+         textAlign: 'center',
+         marginTop: '1rem',
+         color: '#ffffff',
+         }}
+         >
+         Connect your TON wallet.
+         </h1>
 
         <div className="mt-4 space-y-2">
           <ListItem
