@@ -46,9 +46,17 @@ export default function Wallet() {
           alt="toncoin"
           className="object-contain w-32 h-32 mx-auto"
         />
-        <h1 className="mt-4 text-2xl font-bold text-center uppercase">
-          TON Wallet
-        </h1>
+        h1
+         style={{
+         fontFamily: "'ZCOOL KuaiLe', sans-serif",
+         fontSize: '1.5rem',
+         textAlign: 'center',
+         marginTop: '1rem',
+         color: '#ffffff',
+         }}
+         >
+         WALLET
+         </h1>
         <p className="mt-2.5 font-medium text-center">
           Connect your TON wallet
         </p>
