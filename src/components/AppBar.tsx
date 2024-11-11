@@ -2,11 +2,11 @@ import { Link, useLocation } from "react-router-dom";
 import { cn } from "../lib/utils";
 
 const links = [
-  { name: "Home", link: "/", image: "/images/explore.png" },
+  { name: "Tappy", link: "/", image: "/images/explore.png" },
   { name: "Friends", link: "/friends", image: "/images/friends.png" },
   { name: "Tappy", link: "/game", image: "/images/main_button.png" },
   { name: "Tasks", link: "/earn", image: "/images/bounty.png" },
-  { name: "Rewards", link: "/airdrop", image: "/images/toncoin.png" },
+  { name: "Wallet", link: "/wallet", image: "/images/toncoin.png" },
 ];
 
 export default function AppBar() {
