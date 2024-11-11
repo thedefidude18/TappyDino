@@ -13,7 +13,7 @@ export default function AppBar() {
   const { pathname } = useLocation();
   return (
     <div className="fixed left-0 z-10 w-full px-5 py-0 bottom-2">
-      <div className="flex items-center w-full p-2 max-w-lg mx-auto rounded-[35px] bg-black/20 backdrop-blur-3xl">
+      <div className="flex items-center w-full p-2 max-w-lg mx-auto rounded-[35px] bg-black/50 backdrop-blur-1xl">
         {links.map((link, key) => (
           <Link
             key={key}
