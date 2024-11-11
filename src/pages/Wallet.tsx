@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { useEffect } from "react";
 import ListItem from "@/components/ListItem";
 import CheckIcon from "@/components/icons/CheckIcon";
@@ -7,7 +8,6 @@ import useTonPay from "@/hooks/useTonPay";
 import { CHAIN, useTonAddress, useTonConnectUI } from "@tonconnect/ui-react";
 import { useCopyToClipboard } from "@uidotdev/usehooks";
 import { CopyIcon, Loader2Icon, Wallet2Icon, XIcon } from "lucide-react";
-import { useState } from "react";
 import { toast } from "react-toastify";
 import levelConfig from "@/config/level-config";
 import { useUserStore } from "@/store/user-store";
@@ -18,18 +18,18 @@ export default function Wallet() {
   const [, copy] = useCopyToClipboard();
   const tonAddress = useTonAddress();
   const { connected: isConnected, network } = useTonConnect();
-
   const user = useUserStore();
 
-  // Dynamically load the font
+  // Dynamically load the font within the component using <style> tag
   useEffect(() => {
-    const link = document.createElement("link");
-    link.href = "https://fonts.googleapis.com/css2?family=Zcool+Kualie&display=swap";
-    link.rel = "stylesheet";
-    document.head.appendChild(link);
+    const styleTag = document.createElement("style");
+    styleTag.innerHTML = `
+      @import url('https://fonts.googleapis.com/css2?family=Zcool+Kualie&display=swap');
+    `;
+    document.head.appendChild(styleTag);
 
     return () => {
-      document.head.removeChild(link);
+      document.head.removeChild(styleTag);
     };
   }, []);
 
