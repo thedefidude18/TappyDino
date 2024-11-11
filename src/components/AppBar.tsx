@@ -23,34 +23,36 @@ export default function AppBar() {
         `}
       </style>
 
-      <div className="fixed bottom-0 left-1/2 transform -translate-x-1/2 w-[calc(100%-2rem)] max-w-xl flex justify-around items-center z-40 text-xs bg-black rounded-t-lg p-2">
-        {links.map((link, key) => (
-          <Link
-            key={key}
-            to={link.link}
-            className="flex-1 py-0 px-[1px]"
-          >
-            <div
-              className={cn(
-                "flex flex-col items-center justify-center h-16 p-2 transition-all duration-300 rounded-lg",
-                pathname === link.link
-                  ? "bg-gradient-to-b from-black via-[#1461C9] to-[#1461C9] mt-[-5px]"
-                  : "text-[#85827d] bg-[#17307B]"
-              )}
+      <div className="fixed bottom-0 w-full flex justify-center items-center z-40 text-xs">
+        <div className="w-full max-w-xl flex justify-around items-center bg-black rounded-t-lg border border-gray-600 p-1">
+          {links.map((link, key) => (
+            <Link
+              key={key}
+              to={link.link}
+              className="flex-1 py-0 px-[1px]"
             >
-              <div className="w-8 h-8">
-                {link.image && (
-                  <img
-                    src={link.image}
-                    alt={link.name}
-                    className="w-full h-full object-contain"
-                  />
+              <div
+                className={cn(
+                  "flex flex-col items-center justify-center h-16 p-1 transition-all duration-300 rounded-lg",
+                  pathname === link.link
+                    ? "bg-gradient-to-b from-black via-[#1461C9] to-[#1461C9] mt-[-3px]"
+                    : "text-[#85827d] bg-[#17307B]"
                 )}
+              >
+                <div className="w-8 h-8">
+                  {link.image && (
+                    <img
+                      src={link.image}
+                      alt={link.name}
+                      className="w-full h-full object-contain"
+                    />
+                  )}
+                </div>
+                <p className="mt-1 zcool-font text-white">{link.name}</p>
               </div>
-              <p className="mt-1 zcool-font text-white">{link.name}</p>
-            </div>
-          </Link>
-        ))}
+            </Link>
+          ))}
+        </div>
       </div>
     </>
   );
