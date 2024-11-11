@@ -42,7 +42,7 @@ export default function Wallet() {
     <div
   className="flex flex-col justify-end bg-cover flex-1"
   style={{
-    backgroundImage: `linear-gradient(98deg, #35a6eb 3.58%, #309adb 101.32%), url(${levelConfig.bg[user?.level?.level || 1]})`,
+    background: 'linear-gradient(to bottom, #575EFF, rgba(14, 203, 255, 0.94))'
   }}
 >
       <div className="flex flex-col flex-1 w-full h-full px-6 py-8 pb-24 mt-12 modal-body" style={{ fontFamily: 'Zcool Kualie, sans-serif' }}>
