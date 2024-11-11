@@ -24,7 +24,7 @@ export default function AppBar() {
       </style>
 
       <div className="fixed bottom-0 w-full flex justify-center items-center z-40 text-xs">
-        <div className="w-full max-w-xl flex justify-around items-center bg-black rounded-t-lg border border-black-600 p-1">
+        <div className="w-full max-w-xl flex justify-around items-center bg-black rounded-t-lg border border-grey-10 p-1">
           {links.map((link, key) => (
             <Link
               key={key}
