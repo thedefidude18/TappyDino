@@ -4,7 +4,7 @@ import { cn } from "../lib/utils";
 const links = [
   { name: "Tappy", link: "/", image: "/images/explore.png" },
   { name: "Friends", link: "/friends", image: "/images/friends.png" },
-  { name: "Tappy", link: "/game", image: "/images/main_button.png" },
+  { name: "Rank", link: "/leaderboard", image: "/images/main_button.png" },
   { name: "Tasks", link: "/earn", image: "/images/bounty.png" },
   { name: "Wallet", link: "/wallet", image: "/images/toncoin.png" },
 ];
