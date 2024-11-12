@@ -40,6 +40,21 @@ export default function Home() {
         </span>
       </div>
 
+
+       <div className="px-4 pt-1 pb-24">
+              <div className="w-fit m-auto mt-16 px-2 flex justify-center h-12 bg-[#D744C9] select-none transition-all duration-150 [box-shadow:0_3px_0_0_#ac36a0] rounded-2xl  border-[2px] border-[#df69d4]">
+                <Image
+                  src={boost}
+                  alt="coinstack"
+                  className="flex flex-col w-[40px] items-center mr-2"
+                />
+                <span className="lilita-one-regular !italic big-outline flex flex-col justify-center items-center h-full text-white font-bold text-3xl mr-2">
+                  {Math.floor(pointsBalance).toLocaleString()}
+                </span>
+              </div>
+
+
+         
       <div className="flex justify-between items-center mt-10">
         {/* Left-side Buttons */}
         <div className="flex flex-col space-y-4 items-center">
