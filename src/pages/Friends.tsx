@@ -42,8 +42,13 @@ export default function Friends() {
     background: 'linear-gradient(to bottom, #575EFF, rgba(14, 203, 255, 0.94))'
   }}
 >
-      <div className="flex flex-col flex-1 w-full h-full px-6 py-8 pb-24 mt-12 modal-body">
-          <h1
+       <div className="flex flex-col flex-1 w-full h-full px-6 py-8 pb-24 mt-12 modal-body">
+        <img
+          src="/images/coins.png"
+          alt="coins"
+          className="object-contain w-32 h-32 mx-auto"
+        />
+        <h1
          style={{
          fontFamily: "'ZCOOL KuaiLe', sans-serif",
          fontSize: '1.5rem',
@@ -52,7 +57,7 @@ export default function Friends() {
          color: '#ffffff',
          }}
          >
-         FRIENDS
+         friends
          </h1>
            <h1
          style={{
