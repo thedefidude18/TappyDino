@@ -76,47 +76,46 @@ export default function UserTap(props: React.HTMLProps<HTMLDivElement>) {
 
     return () => clearInterval(interval);
   }, []);
+
   return (
     <div {...props}>
       <div className="mt-4 mb-8">
-  <button
-  ref={userTapButtonRef}
-  className="flex items-center justify-center mx-auto transition-all rounded-full outline-none select-none disabled:opacity-80 disabled:cursor-not-allowed floating"
-  disabled={user.available_energy < user.earn_per_tap}
-  onPointerUp={tabMe}
-  style={{
-    animation: "floating 2s ease-in-out infinite",
-  }}
->
-<img
-  src={levelConfig.frogs[user.level?.level || 1]}
-  alt="level image"
-  className="object-contain w-40 h-40" // Adjust as needed
-  style={{ filter: levelConfig.filter[user.level?.level || 1] }}
-/>
+        <button
+          ref={userTapButtonRef}
+          className="flex items-center justify-center mx-auto transition-all rounded-full outline-none select-none disabled:opacity-80 disabled:cursor-not-allowed floating"
+          disabled={user.available_energy < user.earn_per_tap}
+          onPointerUp={tabMe}
+          style={{
+            animation: "floating 2s ease-in-out infinite",
+          }}
+        >
+          <img
+            src={levelConfig.frogs[user.level?.level || 1]}
+            alt="level image"
+            className="object-contain w-40 h-40"
+            style={{ filter: levelConfig.filter[user.level?.level || 1] }}
+          />
+        </button>
 
-</button>
+        <style>
+          {`
+            @keyframes floating {
+              0% {
+                transform: translateY(0px);
+              }
+              50% {
+                transform: translateY(-10px);
+              }
+              100% {
+                transform: translateY(0px);
+              }
+            }
 
-<style>
-  {`
-    @keyframes floating {
-      0% {
-        transform: translateY(0px);
-      }
-      50% {
-        transform: translateY(-10px);
-      }
-      100% {
-        transform: translateY(0px);
-      }
-    }
-
-    .floating {
-      animation: floating 3s ease-in-out infinite;
-    }
-  `}
-</style>
-
+            .floating {
+              animation: floating 3s ease-in-out infinite;
+            }
+          `}
+        </style>
       </div>
 
       <div ref={userAnimateRef} className="user-tap-animate">
@@ -130,30 +129,32 @@ export default function UserTap(props: React.HTMLProps<HTMLDivElement>) {
           </div>
         ))}
       </div>
-      <div className="flex items-center justify-between mb-2">
-        <div className="flex items-center space-x-2">
-          <img
-            src="/images/coin.png"
-            alt="coin"
-            className="object-contain w-11 h-11"
-          />
-          <span className="text-xs font-bold">
-            {user.available_energy} / {user.max_energy}
-          </span>
-        </div>
-        <Link
-          to={"/boost"}
-          className="flex items-center space-x-2 text-sm font-bold"
-        >
-          <span className="text-xs font-bold"></span>
 
-          <img
-            src="/images/boost.png"
-            alt="boost"
-            className="object-contain w-12.5 h-11"
-          />
-        </Link>
-      </div>
+{/* Adjusted margin to move this section downwards */}
+<div className="flex items-center justify-between mb-3 mt-12">
+  <div className="flex items-center space-x-2">
+    <img
+      src="/images/coin.png"
+      alt="coin"
+      className="object-contain w-11 h-11"
+    />
+    <span className="text-xs font-bold">
+      {user.available_energy} / {user.max_energy}
+    </span>
+  </div>
+  <Link
+    to={"/boost"}
+    className="flex items-center space-x-2 text-sm font-bold"
+  >
+    <span className="text-xs font-bold"></span>
+    <img
+      src="/images/boost.png"
+      alt="boost"
+      className="object-contain w-12.5 h-11"
+    />
+  </Link>
+</div>
+
     </div>
   );
 }
