@@ -8,6 +8,7 @@ import { uesStore } from "@/store";
 export default function Home() {
   const user = useUserStore();
   const { maxLevel } = uesStore();
+
   return (
     <div
       className="flex-1 px-5 pb-20 bg-center bg-cover"
@@ -15,6 +16,7 @@ export default function Home() {
         backgroundImage: `url(${levelConfig.bg[user?.level?.level || 1]})`,
       }}
     >
+      {/* Header with User Avatar */}
       <header className="flex items-center justify-between mt-4">
         <div className="flex items-center gap-2 px-3 py-2 border-2 rounded-full bg-black/20 border-white/10">
           <img
@@ -27,7 +29,11 @@ export default function Home() {
           </p>
         </div>
       </header>
+
+      {/* Game Details Component */}
       <UserGameDetails className="mt-6" />
+
+      {/* Coins and Balance */}
       <div className="flex mt-6 space-x-1.5 justify-center items-center select-none">
         <img
           src="/images/coins.png"
@@ -38,7 +44,9 @@ export default function Home() {
           {Math.floor(user.balance)?.toLocaleString()}
         </span>
       </div>
-      <div className="">
+
+      {/* Level Progression and Leaderboard Link */}
+      <div className="mt-4">
         <Link
           to={"/leaderboard"}
           className="flex items-center justify-between gap-2"
@@ -53,16 +61,20 @@ export default function Home() {
             </span>
           </div>
         </Link>
+
+        {/* Level Progress Bar */}
         <div className="bg-[#FFDAA3]/10 border overflow-hidden border-[#FFDAA3]/10 rounded-full mt-2 h-4 w-full">
           <div
             className="bg-[linear-gradient(180deg,#FBEDE0_0%,#F7B87D_21%,#F3A155_52%,#E6824B_84%,#D36224_100%)] h-full"
             style={{
-              width: `${(user.balance! / user.level!.to_balance) * 100}%`,
+              width: `${Math.min(100, (user.balance! / user.level!.to_balance) * 100)}%`,
             }}
           ></div>
         </div>
       </div>
-      <UserTap />
+
+      {/* User Tap Component */}
+      <UserTap className="mt-6" />
     </div>
   );
 }
