@@ -46,7 +46,7 @@ export default function Home() {
           <div className="relative w-12 h-12 flex items-center justify-center bg-white/30 shadow-lg shadow-white/30 rounded">
             <img src="/images/coin_box.png" alt="icon1" className="w-10 h-10" />
           </div>
-          <p className="text-xs font-bold text-center mt-1">Earn per tap +2</p>
+          <p className="text-xs font-bold text-center mt-1">Earn +2</p>
 
           <div className="relative w-12 h-12 flex items-center justify-center bg-white/30 shadow-lg shadow-white/30 rounded">
             <img src="/images/coin_box.png" alt="icon2" className="w-10 h-10" />
@@ -59,7 +59,7 @@ export default function Home() {
           <div className="relative w-12 h-12 flex items-center justify-center bg-white/30 shadow-lg shadow-white/30 rounded">
             <img src="/images/coin_box.png" alt="icon3" className="w-10 h-10" />
           </div>
-          <p className="text-xs font-bold text-center mt-1">Profit per hour +0</p>
+          <p className="text-xs font-bold text-center mt-1">Profit p/h +0</p>
 
           <div className="relative w-12 h-12 flex items-center justify-center bg-white/30 shadow-lg shadow-white/30 rounded">
             <img src="/images/coin_box.png" alt="icon4" className="w-10 h-10" />
