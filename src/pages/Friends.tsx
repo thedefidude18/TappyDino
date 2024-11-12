@@ -57,7 +57,7 @@ export default function Friends() {
          color: '#ffffff',
          }}
          >
-         friends
+         FRIENDS
          </h1>
            <h1
          style={{
