@@ -134,8 +134,8 @@ export default function UserTap(props: React.HTMLProps<HTMLDivElement>) {
 <div className="flex items-center justify-between mb-3 mt-12">
   <div className="flex items-center space-x-2">
     <img
-      src="/images/coin.png"
-      alt="coin"
+      src="/images/fire.png"
+      alt="fire"
       className="object-contain w-11 h-11"
     />
     <span className="text-xs font-bold">
