@@ -6,13 +6,13 @@ import { useDebounce } from "@uidotdev/usehooks";
 import { $http } from "@/lib/http";
 import levelConfig from "@/config/level-config";
 
-// Import your images
-import coin_box from "../assets/coin_box.png";
-import setting_pic from "../assets/setting_pic.png";
-import alert_pic from "../assets/alert_pic.png";
-import rank_pic from "../assets/rank_pic.png";
-import shop_pic from "../assets/shop_pic.png";
-import time_pic from "../assets/time_pic.png";
+// Correct paths for your images
+import coin_box from "../public/images/coin_box.png";
+import setting_pic from "../public/images/setting_pic.png";
+import alert_pic from "../public/images/alert_pic.png";
+import rank_pic from "../public/images/rank_pic.png";
+import shop_pic from "../public/images/shop_pic.png";
+import time_pic from "../public/images/time_pic.png";
 
 export default function UserTap(props: React.HTMLProps<HTMLDivElement>) {
   const { gameLevelIndex, LEVELS, user } = useUserStore();
@@ -73,7 +73,7 @@ export default function UserTap(props: React.HTMLProps<HTMLDivElement>) {
         <div>
           <Link href="#">
             <img
-              src={speed}
+              src="/images/speed.png"
               alt="coin_box"
               className="w-[48px] !h-[48px] m-auto cursor-pointer active:scale-95 transition transform duration-150"
             />
