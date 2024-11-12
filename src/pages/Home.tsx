@@ -64,13 +64,37 @@ export default function Home() {
       </div>
 
       {/* Vertical buttons */}
-      <div className="absolute left-4 bottom-16 flex flex-col gap-2">
-        <button className="bg-blue-500 text-white p-2 rounded-md">Button 1</button>
-        <button className="bg-green-500 text-white p-2 rounded-md">Button 2</button>
+      <div className="absolute left-4 top-1/2 transform -translate-y-1/2 flex flex-col gap-2">
+        <button className="p-0 w-16 h-16 bg-blue-500 rounded-full flex justify-center items-center">
+          <img
+            src="https://raw.githubusercontent.com/thedefidude18/TappyDino/refs/heads/main/public/images/coin_box.png"
+            alt="Button Icon 1"
+            className="object-contain w-12 h-12"
+          />
+        </button>
+        <button className="p-0 w-16 h-16 bg-green-500 rounded-full flex justify-center items-center">
+          <img
+            src="https://raw.githubusercontent.com/thedefidude18/TappyDino/refs/heads/main/public/images/coin_box.png"
+            alt="Button Icon 2"
+            className="object-contain w-12 h-12"
+          />
+        </button>
       </div>
-      <div className="absolute right-4 bottom-16 flex flex-col gap-2">
-        <button className="bg-red-500 text-white p-2 rounded-md">Button 3</button>
-        <button className="bg-yellow-500 text-white p-2 rounded-md">Button 4</button>
+      <div className="absolute right-4 top-1/2 transform -translate-y-1/2 flex flex-col gap-2">
+        <button className="p-0 w-16 h-16 bg-red-500 rounded-full flex justify-center items-center">
+          <img
+            src="https://raw.githubusercontent.com/thedefidude18/TappyDino/refs/heads/main/public/images/coin_box.png"
+            alt="Button Icon 3"
+            className="object-contain w-12 h-12"
+          />
+        </button>
+        <button className="p-0 w-16 h-16 bg-yellow-500 rounded-full flex justify-center items-center">
+          <img
+            src="https://raw.githubusercontent.com/thedefidude18/TappyDino/refs/heads/main/public/images/coin_box.png"
+            alt="Button Icon 4"
+            className="object-contain w-12 h-12"
+          />
+        </button>
       </div>
 
       <UserTap />
