@@ -63,36 +63,36 @@ export default function Home() {
         </div>
       </div>
 
-      {/* Vertical buttons */}
+      {/* Glassy buttons with shadow */}
       <div className="absolute left-4 top-1/2 transform -translate-y-1/2 flex flex-col gap-2">
-        <button className="p-0 w-16 h-16 bg-blue-500 rounded-full flex justify-center items-center">
+        <button className="p-0 w-20 h-20 bg-white/30 backdrop-blur-md rounded-xl shadow-lg flex justify-center items-center border border-white/20">
           <img
             src="https://raw.githubusercontent.com/thedefidude18/TappyDino/refs/heads/main/public/images/coin_box.png"
             alt="Button Icon 1"
-            className="object-contain w-12 h-12"
+            className="object-contain w-16 h-16"
           />
         </button>
-        <button className="p-0 w-16 h-16 bg-green-500 rounded-full flex justify-center items-center">
+        <button className="p-0 w-20 h-20 bg-white/30 backdrop-blur-md rounded-xl shadow-lg flex justify-center items-center border border-white/20">
           <img
             src="https://raw.githubusercontent.com/thedefidude18/TappyDino/refs/heads/main/public/images/coin_box.png"
             alt="Button Icon 2"
-            className="object-contain w-12 h-12"
+            className="object-contain w-16 h-16"
           />
         </button>
       </div>
       <div className="absolute right-4 top-1/2 transform -translate-y-1/2 flex flex-col gap-2">
-        <button className="p-0 w-16 h-16 bg-red-500 rounded-full flex justify-center items-center">
+        <button className="p-0 w-20 h-20 bg-white/30 backdrop-blur-md rounded-xl shadow-lg flex justify-center items-center border border-white/20">
           <img
             src="https://raw.githubusercontent.com/thedefidude18/TappyDino/refs/heads/main/public/images/coin_box.png"
             alt="Button Icon 3"
-            className="object-contain w-12 h-12"
+            className="object-contain w-16 h-16"
           />
         </button>
-        <button className="p-0 w-16 h-16 bg-yellow-500 rounded-full flex justify-center items-center">
+        <button className="p-0 w-20 h-20 bg-white/30 backdrop-blur-md rounded-xl shadow-lg flex justify-center items-center border border-white/20">
           <img
             src="https://raw.githubusercontent.com/thedefidude18/TappyDino/refs/heads/main/public/images/coin_box.png"
             alt="Button Icon 4"
-            className="object-contain w-12 h-12"
+            className="object-contain w-16 h-16"
           />
         </button>
       </div>
