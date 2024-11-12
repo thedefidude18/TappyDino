@@ -65,52 +65,59 @@ export default function Home() {
 
       {/* Glassy buttons with shadow */}
       <div className="absolute left-4 top-1/3 transform -translate-y-1/3 flex flex-col gap-4">
-        <button className="w-20 h-20 bg-white/30 backdrop-blur-md rounded-xl shadow-lg border border-white/20 flex justify-center items-center">
-          <img
-            src="https://raw.githubusercontent.com/thedefidude18/TappyDino/refs/heads/main/public/images/coin_box.png"
-            alt="Button Icon 1"
-            className="object-contain w-16 h-16"
-          />
-        </button>
-        <p className="text-xs font-bold text-white text-center">Earn per tap +2</p>
-        
-        <button className="w-20 h-20 bg-white/30 backdrop-blur-md rounded-xl shadow-lg border border-white/20 flex justify-center items-center">
-          <img
-            src="https://raw.githubusercontent.com/thedefidude18/TappyDino/refs/heads/main/public/images/coin_box.png"
-            alt="Button Icon 2"
-            className="object-contain w-16 h-16"
-          />
-        </button>
-        <p className="text-xs font-bold text-white text-center">Coins to level up 15k</p>
-
-        <button className="w-20 h-20 bg-white/30 backdrop-blur-md rounded-xl shadow-lg border border-white/20 flex justify-center items-center">
-          <img
-            src="https://raw.githubusercontent.com/thedefidude18/TappyDino/refs/heads/main/public/images/coin_box.png"
-            alt="Button Icon 3"
-            className="object-contain w-16 h-16"
-          />
-        </button>
-        <p className="text-xs font-bold text-white text-center">Profit per hour +0</p>
+        <div className="text-center">
+          <button className="w-20 h-20 bg-white/30 backdrop-blur-md rounded-xl shadow-lg border border-white/20 flex justify-center items-center">
+            <img
+              src="https://raw.githubusercontent.com/thedefidude18/TappyDino/refs/heads/main/public/images/coin_box.png"
+              alt="Button Icon 1"
+              className="object-contain w-16 h-16"
+            />
+          </button>
+          <p className="text-xs font-bold text-white">Earn per tap +2</p>
+        </div>
+        <div className="text-center">
+          <button className="w-20 h-20 bg-white/30 backdrop-blur-md rounded-xl shadow-lg border border-white/20 flex justify-center items-center">
+            <img
+              src="https://raw.githubusercontent.com/thedefidude18/TappyDino/refs/heads/main/public/images/coin_box.png"
+              alt="Button Icon 2"
+              className="object-contain w-16 h-16"
+            />
+          </button>
+          <p className="text-xs font-bold text-white">Coins to level up 15k</p>
+        </div>
+        <div className="text-center">
+          <button className="w-20 h-20 bg-white/30 backdrop-blur-md rounded-xl shadow-lg border border-white/20 flex justify-center items-center">
+            <img
+              src="https://raw.githubusercontent.com/thedefidude18/TappyDino/refs/heads/main/public/images/coin_box.png"
+              alt="Button Icon 3"
+              className="object-contain w-16 h-16"
+            />
+          </button>
+          <p className="text-xs font-bold text-white">Profit per hour +0</p>
+        </div>
       </div>
 
       <div className="absolute right-4 top-1/3 transform -translate-y-1/3 flex flex-col gap-4">
-        <button className="w-20 h-20 bg-white/30 backdrop-blur-md rounded-xl shadow-lg border border-white/20 flex justify-center items-center">
-          <img
-            src="https://raw.githubusercontent.com/thedefidude18/TappyDino/refs/heads/main/public/images/coin_box.png"
-            alt="Button Icon 4"
-            className="object-contain w-16 h-16"
-          />
-        </button>
-        <p className="text-xs font-bold text-white text-center">Button 4</p>
-
-        <button className="w-20 h-20 bg-white/30 backdrop-blur-md rounded-xl shadow-lg border border-white/20 flex justify-center items-center">
-          <img
-            src="https://raw.githubusercontent.com/thedefidude18/TappyDino/refs/heads/main/public/images/coin_box.png"
-            alt="Button Icon 5"
-            className="object-contain w-16 h-16"
-          />
-        </button>
-        <p className="text-xs font-bold text-white text-center">Button 5</p>
+        <div className="text-center">
+          <button className="w-20 h-20 bg-white/30 backdrop-blur-md rounded-xl shadow-lg border border-white/20 flex justify-center items-center">
+            <img
+              src="https://raw.githubusercontent.com/thedefidude18/TappyDino/refs/heads/main/public/images/coin_box.png"
+              alt="Button Icon 4"
+              className="object-contain w-16 h-16"
+            />
+          </button>
+          <p className="text-xs font-bold text-white">Button 4</p>
+        </div>
+        <div className="text-center">
+          <button className="w-20 h-20 bg-white/30 backdrop-blur-md rounded-xl shadow-lg border border-white/20 flex justify-center items-center">
+            <img
+              src="https://raw.githubusercontent.com/thedefidude18/TappyDino/refs/heads/main/public/images/coin_box.png"
+              alt="Button Icon 5"
+              className="object-contain w-16 h-16"
+            />
+          </button>
+          <p className="text-xs font-bold text-white">Button 5</p>
+        </div>
       </div>
 
       <UserTap />
