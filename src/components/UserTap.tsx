@@ -6,34 +6,106 @@ import { useDebounce } from "@uidotdev/usehooks";
 import { $http } from "@/lib/http";
 import levelConfig from "@/config/level-config";
 
-// Correct paths for your images - use relative paths from the root
-const coin_box = "/images/coin_box.png";
-const setting_pic = "/images/setting_pic.png";
-const rank_pic = "/images/rank_pic.png";
-const shop_pic = "/images/shop_pic.png";
-
 export default function UserTap(props: React.HTMLProps<HTMLDivElement>) {
-  const { gameLevelIndex, LEVELS, user } = useUserStore();
-  const { handleSettingsClick, tabMe, userTapButtonRef } = useClicksStore();
-  const [debouncedUserPoints, setDebouncedUserPoints] = useState(user?.points || 0);
+  const userAnimateRef = useRef<HTMLDivElement | null>(null);
+  const userTapButtonRef = useRef<HTMLButtonElement | null>(null);
+  const [clicksCount, setClicksCount] = useState(0);
+  const debounceClicksCount = useDebounce(clicksCount, 1000);
 
-  // Example of using debounced points (adjust as needed)
-  const debouncedPoints = useDebounce(user?.points, 1000);
+  const { clicks, addClick, removeClick } = useClicksStore();
+  const { UserTap, incraseEnergy, ...user } = useUserStore();
+
+  const tabMe = (e: React.MouseEvent) => {
+    e.preventDefault();
+    if (!UserTap()) return;
+
+    setClicksCount((prev) => prev + 1);
+
+    addClick({
+      id: new Date().getTime(),
+      value: user.earn_per_tap,
+      style: {
+        top: e.clientY,
+        left: e.clientX + (Math.random() > 0.5 ? 5 : -5),
+      },
+    });
+    animateButton();
+  };
+
+  const animateButton = () => {
+    if (!userTapButtonRef.current) return;
+
+    Telegram.WebApp.HapticFeedback.impactOccurred("medium");
+
+    userTapButtonRef.current.classList.add("scale-95");
+    setTimeout(() => {
+      userTapButtonRef.current?.classList.remove("scale-95");
+    }, 150);
+  };
 
   useEffect(() => {
-    // Check if the user object exists before updating state
-    if (user) {
-      setDebouncedUserPoints(debouncedPoints);
-    }
-  }, [debouncedPoints, user]); // Added user as a dependency
+    const count = debounceClicksCount;
+    setClicksCount(0);
+    if (count === 0) return;
 
-  // Check if user is defined before rendering
-  if (!user) {
-    return <div>Loading...</div>; // Optionally display a loading message or spinner
-  }
+    $http
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      .post<Record<string, any>>("/clicker/tap", {
+        count,
+        energy: user.available_energy,
+        timestamp: Math.floor(Date.now() / 1000),
+      })
+      .then(({ data }) => {
+        if (data.leveled_up) {
+          useUserStore.setState({
+            level: data.level || user.level,
+            earn_per_tap: data.earn_per_tap,
+            max_energy: data.max_energy,
+          });
+        }
+      })
+      .catch(() => setClicksCount(count));
+  }, [debounceClicksCount]);
 
+  useEffect(() => {
+    useClicksStore.setState({ clicks: [] });
+
+    const interval = setInterval(() => {
+      incraseEnergy(3);
+    }, 3000);
+
+    return () => clearInterval(interval);
+  }, []);
   return (
     <div {...props}>
+      <div className="mt-4 mb-8">
+        <button
+          ref={userTapButtonRef}
+          className="flex items-center justify-center mx-auto transition-all rounded-full outline-none select-none disabled:opacity-80 disabled:cursor-not-allowed"
+          disabled={user.available_energy < user.earn_per_tap}
+          // onClick={tabMe}
+          onPointerUp={tabMe}
+        >
+          <img
+            src={levelConfig.frogs[user.level?.level || 1]}
+            alt="level image"
+            className="object-contain max-w-full w-80 h-80"
+            style={{ filter: levelConfig.filter[user.level?.level || 1] }}
+          />
+        </button>
+      </div>
+
+      <div ref={userAnimateRef} className="user-tap-animate">
+        {clicks.map((click) => (
+          <div
+            key={click.id}
+            onAnimationEnd={() => removeClick(click.id)}
+            style={click.style}
+          >
+            +{click.value}
+          </div>
+        ))}
+      </div>
       <div className="flex items-center justify-between mb-2">
         <div className="flex items-center space-x-2">
           <img
@@ -45,77 +117,18 @@ export default function UserTap(props: React.HTMLProps<HTMLDivElement>) {
             {user.available_energy} / {user.max_energy}
           </span>
         </div>
-      </div>
-
-      {/* Image button for tap */}
-      <div className="mt-4 mb-8">
-        <button
-          ref={userTapButtonRef}
-          className="flex items-center justify-center mx-auto transition-all rounded-full outline-none select-none disabled:opacity-80 disabled:cursor-not-allowed"
-          disabled={user.available_energy < user.earn_per_tap}
-          onPointerUp={tabMe}
+        <Link
+          to={"/boost"}
+          className="flex items-center space-x-2 text-sm font-bold"
         >
-          <img
-            src={coin_box}
-            alt="level image"
-            className="object-contain max-w-full w-80 h-80"
-            style={{ filter: levelConfig.filter[user.level?.level || 1] }}
-          />
-        </button>
-      </div>
+          <span className="text-xs font-bold">Boost</span>
 
-      {/* Left-side absolute section with two buttons */}
-      <div className="absolute top-[30%] left-3 p-2 rounded-xl bg-black bg-opacity-20">
-        <div>
-          <Link to="/settings">
-            <img
-              src={setting_pic}
-              alt="settings"
-              className="w-[48px] !h-[48px] m-auto cursor-pointer active:scale-95 transition transform duration-150"
-            />
-            <p className="text-white small-outline poppins-thin text-xs !font-extrabold m-auto mt-1 mb-2 text-center tracking-tighter">
-              Settings
-            </p>
-          </Link>
-        </div>
-        <div>
-          <Link to="/rank">
-            <img
-              src={rank_pic}
-              alt="rank"
-              className="w-[48px] !h-[48px] m-auto cursor-pointer active:scale-95 transition transform duration-150"
-            />
-            <p className="text-white small-outline poppins-thin text-xs !font-extrabold m-auto mt-1 mb-2 text-center tracking-tighter">
-              Rank
-            </p>
-          </Link>
-        </div>
-      </div>
-
-      {/* Right-side absolute section with two buttons */}
-      <div className="absolute top-[30%] right-3 p-2 rounded-xl bg-black bg-opacity-20">
-        <div>
-          <Link to="/shop">
-            <img
-              src={shop_pic}
-              alt="shop"
-              className="w-[48px] !h-[48px] m-auto cursor-pointer active:scale-95 transition transform duration-150"
-            />
-            <p className="text-white small-outline poppins-thin text-xs !font-extrabold m-auto mt-1 mb-2 text-center tracking-tighter">
-              Shop
-            </p>
-          </Link>
-        </div>
-        <div>
           <img
-            src="/images/time_pic.png"
-            alt="time_icon"
-            className="w-[48px] !h-[48px] m-auto"
+            src="/images/boost.png"
+            alt="boost"
+            className="object-contain w-8 h-8"
           />
-          <p className="text-white small-outline poppins-thin text-xs !font-extrabold m-auto mt-1 mb-1 text-center tracking-tighter">
-            2d 06h
-          </p>
-        </div>
+        </Link>
       </div>
     </div>
   );
