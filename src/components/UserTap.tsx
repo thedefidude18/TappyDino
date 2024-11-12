@@ -150,7 +150,7 @@ export default function UserTap(props: React.HTMLProps<HTMLDivElement>) {
           <img
             src="/images/boost.png"
             alt="boost"
-            className="object-contain w-11 h-11"
+            className="object-contain w-12.5 h-11"
           />
         </Link>
       </div>
