@@ -6,107 +6,28 @@ import { useDebounce } from "@uidotdev/usehooks";
 import { $http } from "@/lib/http";
 import levelConfig from "@/config/level-config";
 
+// Import your images
+import coin_box from "../assets/coin_box.png";
+import setting_pic from "../assets/setting_pic.png";
+import alert_pic from "../assets/alert_pic.png";
+import rank_pic from "../assets/rank_pic.png";
+import shop_pic from "../assets/shop_pic.png";
+import time_pic from "../assets/time_pic.png";
+
 export default function UserTap(props: React.HTMLProps<HTMLDivElement>) {
-  const userAnimateRef = useRef<HTMLDivElement | null>(null);
-  const userTapButtonRef = useRef<HTMLButtonElement | null>(null);
-  const [clicksCount, setClicksCount] = useState(0);
-  const debounceClicksCount = useDebounce(clicksCount, 1000);
+  const { gameLevelIndex, LEVELS, user } = useUserStore();
+  const { handleSettingsClick, tabMe, userTapButtonRef } = useClicksStore();
+  const [debouncedUserPoints, setDebouncedUserPoints] = useState(user.points);
 
-  const { clicks, addClick, removeClick } = useClicksStore();
-  const { UserTap, incraseEnergy, ...user } = useUserStore();
-
-  const tabMe = (e: React.MouseEvent) => {
-    e.preventDefault();
-    if (!UserTap()) return;
-
-    setClicksCount((prev) => prev + 1);
-
-    addClick({
-      id: new Date().getTime(),
-      value: user.earn_per_tap,
-      style: {
-        top: e.clientY,
-        left: e.clientX + (Math.random() > 0.5 ? 5 : -5),
-      },
-    });
-    animateButton();
-  };
-
-  const animateButton = () => {
-    if (!userTapButtonRef.current) return;
-
-    Telegram.WebApp.HapticFeedback.impactOccurred("medium");
-
-    userTapButtonRef.current.classList.add("scale-95");
-    setTimeout(() => {
-      userTapButtonRef.current?.classList.remove("scale-95");
-    }, 150);
-  };
+  // Example of using debounced points (adjust as needed)
+  const debouncedPoints = useDebounce(user.points, 1000);
 
   useEffect(() => {
-    const count = debounceClicksCount;
-    setClicksCount(0);
-    if (count === 0) return;
-
-    $http
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      .post<Record<string, any>>("/clicker/tap", {
-        count,
-        energy: user.available_energy,
-        timestamp: Math.floor(Date.now() / 1000),
-      })
-      .then(({ data }) => {
-        if (data.leveled_up) {
-          useUserStore.setState({
-            level: data.level || user.level,
-            earn_per_tap: data.earn_per_tap,
-            max_energy: data.max_energy,
-          });
-        }
-      })
-      .catch(() => setClicksCount(count));
-  }, [debounceClicksCount]);
-
-  useEffect(() => {
-    useClicksStore.setState({ clicks: [] });
-
-    const interval = setInterval(() => {
-      incraseEnergy(3);
-    }, 3000);
-
-    return () => clearInterval(interval);
-  }, []);
+    setDebouncedUserPoints(debouncedPoints);
+  }, [debouncedPoints]);
 
   return (
     <div {...props}>
-      <div className="mt-4 mb-8">
-        <button
-          ref={userTapButtonRef}
-          className="flex items-center justify-center mx-auto transition-all rounded-full outline-none select-none disabled:opacity-80 disabled:cursor-not-allowed"
-          disabled={user.available_energy < user.earn_per_tap}
-          onPointerUp={tabMe}
-        >
-          <img
-            src={levelConfig.frogs[user.level?.level || 1]}
-            alt="level image"
-            className="object-contain max-w-full w-80 h-80"
-            style={{ filter: levelConfig.filter[user.level?.level || 1] }}
-          />
-        </button>
-      </div>
-
-      <div ref={userAnimateRef} className="user-tap-animate">
-        {clicks.map((click) => (
-          <div
-            key={click.id}
-            onAnimationEnd={() => removeClick(click.id)}
-            style={click.style}
-          >
-            +{click.value}
-          </div>
-        ))}
-      </div>
-
       <div className="flex items-center justify-between mb-2">
         <div className="flex items-center space-x-2">
           <img
@@ -118,21 +39,26 @@ export default function UserTap(props: React.HTMLProps<HTMLDivElement>) {
             {user.available_energy} / {user.max_energy}
           </span>
         </div>
-        <Link
-          to={"/boost"}
-          className="flex items-center space-x-2 text-sm font-bold"
-        >
-          <span className="text-xs font-bold">Boost</span>
-
-          <img
-            src="/images/boost.png"
-            alt="boost"
-            className="object-contain w-8 h-8"
-          />
-        </Link>
       </div>
 
-      {/* New section with absolute positioning */}
+      {/* Image button for tap */}
+      <div className="mt-4 mb-8">
+        <button
+          ref={userTapButtonRef}
+          className="flex items-center justify-center mx-auto transition-all rounded-full outline-none select-none disabled:opacity-80 disabled:cursor-not-allowed"
+          disabled={user.available_energy < user.earn_per_tap}
+          onPointerUp={tabMe}
+        >
+          <img
+            src={coin_box}
+            alt="level image"
+            className="object-contain max-w-full w-80 h-80"
+            style={{ filter: levelConfig.filter[user.level?.level || 1] }}
+          />
+        </button>
+      </div>
+
+      {/* Left-side absolute section with level and speed */}
       <div className="absolute top-[30%] left-3 p-2 rounded-xl bg-black bg-opacity-20">
         <div>
           <img
@@ -141,8 +67,7 @@ export default function UserTap(props: React.HTMLProps<HTMLDivElement>) {
             className="w-[48px] !h-[48px] m-auto"
           />
           <p className="text-white small-outline poppins-thin text-xs !font-extrabold m-auto mt-1 mb-2 text-center tracking-tighter">
-            {LEVELS[gameLevelIndex].name}&#8226;
-            {gameLevelIndex + 1}/{LEVELS.length}
+            {LEVELS[gameLevelIndex].name}&#8226; {gameLevelIndex + 1}/{LEVELS.length}
           </p>
         </div>
         <div>
@@ -158,6 +83,8 @@ export default function UserTap(props: React.HTMLProps<HTMLDivElement>) {
           </Link>
         </div>
       </div>
+
+      {/* Right-side absolute section with settings, rank, shop */}
       <div className="absolute top-[30%] right-3 p-2 rounded-xl bg-black bg-opacity-20">
         <div>
           <div
@@ -171,7 +98,7 @@ export default function UserTap(props: React.HTMLProps<HTMLDivElement>) {
             />
             <img
               src={alert_pic}
-              alt="coin_box"
+              alt="alert_icon"
               className="w-[18px] !h-[18px] m-auto absolute top-[0px] -right-[9px]"
             />
           </div>
@@ -183,7 +110,7 @@ export default function UserTap(props: React.HTMLProps<HTMLDivElement>) {
           <Link href="#">
             <img
               src={rank_pic}
-              alt="coin_box"
+              alt="rank_icon"
               className="w-[48px] !h-[48px] m-auto cursor-pointer active:scale-95 transition transform duration-150"
             />
             <p className="text-white small-outline poppins-thin text-xs !font-extrabold m-auto mt-1 mb-2 text-center tracking-tighter">
@@ -195,7 +122,7 @@ export default function UserTap(props: React.HTMLProps<HTMLDivElement>) {
           <Link href="#">
             <img
               src={shop_pic}
-              alt="coin_box"
+              alt="shop_icon"
               className="w-[48px] !h-[48px] m-auto cursor-pointer active:scale-95 transition transform duration-150"
             />
             <p className="text-white small-outline poppins-thin text-xs !font-extrabold m-auto mt-1 mb-2 text-center tracking-tighter">
@@ -206,7 +133,7 @@ export default function UserTap(props: React.HTMLProps<HTMLDivElement>) {
         <div>
           <img
             src={time_pic}
-            alt="coin_box"
+            alt="time_icon"
             className="w-[48px] !h-[48px] m-auto"
           />
           <p className="text-white small-outline poppins-thin text-xs !font-extrabold m-auto mt-1 mb-1 text-center tracking-tighter">
