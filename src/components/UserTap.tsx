@@ -91,7 +91,7 @@ export default function UserTap(props: React.HTMLProps<HTMLDivElement>) {
 <img
   src={levelConfig.frogs[user.level?.level || 1]}
   alt="level image"
-  className="object-contain w-43 h-43" // Adjust as needed
+  className="object-contain w-40 h-40" // Adjust as needed
   style={{ filter: levelConfig.filter[user.level?.level || 1] }}
 />
 
