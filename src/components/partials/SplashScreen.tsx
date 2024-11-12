@@ -34,7 +34,6 @@ export default function SplashScreen() {
     >
       <img src="/images/logo.png" alt="logo" className="h-48 max-w-full" />
       <div className="flex flex-col items-center w-full">
-        <div className="flex flex-col items-center w-full pb-6 bg-[url('/images/blur.png')] bg-cover bg-center">
           <h1 className="text-6xl font-medium text-center uppercase text-shadow">
             
           </h1>
@@ -62,6 +61,5 @@ export default function SplashScreen() {
           </div>
         </div>
       </div>
-    </div>
   );
 }
