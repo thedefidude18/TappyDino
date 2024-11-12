@@ -9,22 +9,28 @@ import levelConfig from "@/config/level-config";
 // Correct paths for your images - use relative paths from the root
 const coin_box = "/images/coin_box.png";
 const setting_pic = "/images/setting_pic.png";
-const alert_pic = "/images/alert_pic.png";
 const rank_pic = "/images/rank_pic.png";
 const shop_pic = "/images/shop_pic.png";
-const time_pic = "/images/time_pic.png";
 
 export default function UserTap(props: React.HTMLProps<HTMLDivElement>) {
   const { gameLevelIndex, LEVELS, user } = useUserStore();
   const { handleSettingsClick, tabMe, userTapButtonRef } = useClicksStore();
-  const [debouncedUserPoints, setDebouncedUserPoints] = useState(user.points);
+  const [debouncedUserPoints, setDebouncedUserPoints] = useState(user?.points || 0);
 
   // Example of using debounced points (adjust as needed)
-  const debouncedPoints = useDebounce(user.points, 1000);
+  const debouncedPoints = useDebounce(user?.points, 1000);
 
   useEffect(() => {
-    setDebouncedUserPoints(debouncedPoints);
-  }, [debouncedPoints]);
+    // Check if the user object exists before updating state
+    if (user) {
+      setDebouncedUserPoints(debouncedPoints);
+    }
+  }, [debouncedPoints, user]); // Added user as a dependency
+
+  // Check if user is defined before rendering
+  if (!user) {
+    return <div>Loading...</div>; // Optionally display a loading message or spinner
+  }
 
   return (
     <div {...props}>
@@ -58,59 +64,25 @@ export default function UserTap(props: React.HTMLProps<HTMLDivElement>) {
         </button>
       </div>
 
-      {/* Left-side absolute section with level and speed */}
+      {/* Left-side absolute section with two buttons */}
       <div className="absolute top-[30%] left-3 p-2 rounded-xl bg-black bg-opacity-20">
         <div>
-          <img
-            src={coin_box}
-            alt="coin_box"
-            className="w-[48px] !h-[48px] m-auto"
-          />
-          <p className="text-white small-outline poppins-thin text-xs !font-extrabold m-auto mt-1 mb-2 text-center tracking-tighter">
-            {LEVELS[gameLevelIndex].name}&#8226; {gameLevelIndex + 1}/{LEVELS.length}
-          </p>
-        </div>
-        <div>
-          <Link href="#">
+          <Link to="/settings">
             <img
-              src="/images/speed.png"
-              alt="coin_box"
+              src={setting_pic}
+              alt="settings"
               className="w-[48px] !h-[48px] m-auto cursor-pointer active:scale-95 transition transform duration-150"
             />
-            <p className="text-white small-outline poppins-thin text-xs !font-extrabold m-auto mt-1 mb-1 text-center tracking-tighter">
-              Speed
+            <p className="text-white small-outline poppins-thin text-xs !font-extrabold m-auto mt-1 mb-2 text-center tracking-tighter">
+              Settings
             </p>
           </Link>
         </div>
-      </div>
-
-      {/* Right-side absolute section with settings, rank, shop */}
-      <div className="absolute top-[30%] right-3 p-2 rounded-xl bg-black bg-opacity-20">
         <div>
-          <div
-            className="relative cursor-pointer active:scale-95 transition transform duration-150"
-            onClick={handleSettingsClick}
-          >
-            <img
-              src={setting_pic}
-              alt="coin_box"
-              className="w-[48px] !h-[48px] m-auto"
-            />
-            <img
-              src={alert_pic}
-              alt="alert_icon"
-              className="w-[18px] !h-[18px] m-auto absolute top-[0px] -right-[9px]"
-            />
-          </div>
-          <p className="text-white small-outline poppins-thin text-xs !font-extrabold m-auto mt-1 mb-2 text-center tracking-tighter">
-            Settings
-          </p>
-        </div>
-        <div>
-          <Link href="#">
+          <Link to="/rank">
             <img
               src={rank_pic}
-              alt="rank_icon"
+              alt="rank"
               className="w-[48px] !h-[48px] m-auto cursor-pointer active:scale-95 transition transform duration-150"
             />
             <p className="text-white small-outline poppins-thin text-xs !font-extrabold m-auto mt-1 mb-2 text-center tracking-tighter">
@@ -118,11 +90,15 @@ export default function UserTap(props: React.HTMLProps<HTMLDivElement>) {
             </p>
           </Link>
         </div>
+      </div>
+
+      {/* Right-side absolute section with two buttons */}
+      <div className="absolute top-[30%] right-3 p-2 rounded-xl bg-black bg-opacity-20">
         <div>
-          <Link href="#">
+          <Link to="/shop">
             <img
               src={shop_pic}
-              alt="shop_icon"
+              alt="shop"
               className="w-[48px] !h-[48px] m-auto cursor-pointer active:scale-95 transition transform duration-150"
             />
             <p className="text-white small-outline poppins-thin text-xs !font-extrabold m-auto mt-1 mb-2 text-center tracking-tighter">
@@ -132,7 +108,7 @@ export default function UserTap(props: React.HTMLProps<HTMLDivElement>) {
         </div>
         <div>
           <img
-            src={time_pic}
+            src="/images/time_pic.png"
             alt="time_icon"
             className="w-[48px] !h-[48px] m-auto"
           />
