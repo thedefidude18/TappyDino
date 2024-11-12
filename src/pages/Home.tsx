@@ -76,7 +76,7 @@ export default function Home() {
   >
     <img className="object-contain w-10 h-10 mr-1" src="/images/coin.png" alt="coin icon" />
   </button>
-  <span className="text-xs font-bold text-center text-white">Coins to level up</span><span className="text-sm font-bold text-white">
+  <span className="text-xs font-bold text-center text-white">Level up</span><span className="text-sm font-bold text-white">
       {user?.level ? compactNumber(user.level.to_balance) : 'N/A'}
     </span>
         </div>
