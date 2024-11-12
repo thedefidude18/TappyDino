@@ -4,6 +4,8 @@ import { Link } from "react-router-dom";
 import UserGameDetails from "@/components/UserGameDetails";
 import levelConfig from "@/config/level-config";
 import { uesStore } from "@/store";
+import Image from 'next/image';
+
 
 export default function Home() {
   const user = useUserStore();
@@ -11,7 +13,7 @@ export default function Home() {
 
   return (
     <div
-      className="flex-1 px-5 pb-20 bg-center bg-cover"
+      className="flex-1 px-5 pb-20 bg-center bg-cover relative"
       style={{
         backgroundImage: `url(${levelConfig.bg[user?.level?.level || 1]})`,
       }}
@@ -28,46 +30,52 @@ export default function Home() {
           </p>
         </div>
       </header>
+      
       <UserGameDetails className="mt-6" />
-      <div className="flex mt-6 space-x-1.5 justify-center items-center select-none">
-        <img
-          src="/images/coins.png"
-          alt="coins"
-          className="object-contain w-20 h-20"
-        />
-        <span className="text-3xl font-bold text-gradient">
-          {Math.floor(user.balance)?.toLocaleString()}
-        </span>
-      </div>
+<div className="px-4 pt-1 pb-24">
+  <div className="w-fit m-auto mt-6 px-2 flex justify-center h-12 bg-[#D744C9] select-none transition-all duration-150 [box-shadow:0_3px_0_0_#ac36a0] rounded-2xl border-[2px] border-[#df69d4]">
+    <img
+      src="/images/coins.png"
+      alt="coins"
+      className="object-contain w-22 h-30"
+    />
+    <span className="lilita-one-regular !italic big-outline flex flex-col justify-center items-center h-full text-white font-bold text-3xl mr-2">
+      {Math.floor(user.balance)?.toLocaleString()}
+    </span>
+  </div>
+</div>
 
-      <div className="flex justify-between items-center mt-10">
-        {/* Left-side Buttons */}
-        <div className="flex flex-col space-y-4 items-center">
-          <div className="relative w-12 h-12 flex items-center justify-center bg-white/30 shadow-lg shadow-white/30 rounded">
-            <img src="/images/coin_box.png" alt="icon1" className="w-10 h-10" />
-          </div>
-          <p className="text-xs font-bold text-center mt-1">Earn per tap +2</p>
-
-          <div className="relative w-12 h-12 flex items-center justify-center bg-white/30 shadow-lg shadow-white/30 rounded">
-            <img src="/images/coin_box.png" alt="icon2" className="w-10 h-10" />
-          </div>
-          <p className="text-xs font-bold text-center mt-1">Coins to level up 15k</p>
+      <div className="absolute left-0 top-1/2 transform -translate-y-1/2 flex flex-col items-center space-y-4">
+        {/* Left side buttons */}
+        <div className="flex flex-col items-center">
+          <button className="glass-button w-12 h-12" aria-label="Earn per tap">
+            <img src="/images/coin_box.png" alt="Earn per tap" />
+          </button>
+          <span className="text-xs font-bold mt-1">Earn per tap +2</span>
         </div>
-
-        {/* Right-side Buttons */}
-        <div className="flex flex-col space-y-4 items-center">
-          <div className="relative w-12 h-12 flex items-center justify-center bg-white/30 shadow-lg shadow-white/30 rounded">
-            <img src="/images/coin_box.png" alt="icon3" className="w-10 h-10" />
-          </div>
-          <p className="text-xs font-bold text-center mt-1">Profit per hour +0</p>
-
-          <div className="relative w-12 h-12 flex items-center justify-center bg-white/30 shadow-lg shadow-white/30 rounded">
-            <img src="/images/coin_box.png" alt="icon4" className="w-10 h-10" />
-          </div>
-          <p className="text-xs font-bold text-center mt-1">Bonus +1%</p>
+        <div className="flex flex-col items-center">
+          <button className="glass-button w-12 h-12" aria-label="Coins to level up">
+            <img src="/images/coin_box.png" alt="Coins to level up" />
+          </button>
+          <span className="text-xs font-bold mt-1">Coins to level up 15k</span>
         </div>
       </div>
 
+      <div className="absolute right-0 top-1/2 transform -translate-y-1/2 flex flex-col items-center space-y-4">
+        {/* Right side buttons */}
+        <div className="flex flex-col items-center">
+          <button className="glass-button w-12 h-12" aria-label="Profit per hour">
+            <img src="/images/coin_box.png" alt="Profit per hour" />
+          </button>
+          <span className="text-xs font-bold mt-1">Profit per hour +0</span>
+        </div>
+        <div className="flex flex-col items-center">
+          <button className="glass-button w-12 h-12" aria-label="Other Action">
+            <img src="/images/coin_box.png" alt="Other Action" />
+          </button>
+          <span className="text-xs font-bold mt-1">Other Action</span>
+        </div>
+      </div>
       <UserTap />
     </div>
   );
