@@ -16,7 +16,8 @@ export default function Home() {
       }}
     >
       <header className="flex items-center justify-between mt-4">
-        <div className="flex items-center gap-2 px-3 py-2 border-2 rounded-full bg-black/20 border-white/10">
+        <div className="mt-5 flex justify-between">
+              <div className="ml-[24px] flex">
           <img
             src="/images/avatar.png"
             alt="user-avatar"
