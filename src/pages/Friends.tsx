@@ -43,6 +43,14 @@ export default function Friends() {
   }}
 >
       <div className="flex flex-col flex-1 w-full h-full px-6 py-8 pb-24 mt-12 modal-body">
+         {/* Inner Gradient Container */}
+                <div className="flex-grow mt-4 rounded-t-[48px] relative top-glow z-0 overflow-hidden">
+                    <div className="bg-gradient-to-b from-[#575EFF] to-[#0ECBFF] rounded-t-[46px] h-full">
+                        <div className="px-4 pt-1 pb-24">
+                            <div className="relative mt-4">
+                                <div className="flex justify-center mb-4">
+                                    <Image src={avatar} alt="owl Token" width={96} height={96} className="rounded-lg mr-2" />
+                                </div>
         <h1
          style={{
          fontFamily: "'ZCOOL KuaiLe', sans-serif",
