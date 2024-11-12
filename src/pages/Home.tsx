@@ -15,12 +15,13 @@ export default function Home() {
         backgroundImage: `url(${levelConfig.bg[user?.level?.level || 1]})`,
       }}
     >
-      <div className="bg-[url('../images/UI-ProfileAvatar-Frame.png')] p-2 bg-cover">
-                  <Image
-                    src={avatar_pic}
-                    alt="avatar"
-                    className="w-[32px] !h-[32px]"
-                  />
+      <header className="flex items-center justify-between mt-4">
+        <div className="flex items-center gap-2 px-3 py-2 border-2 rounded-full bg-black/20 border-white/10">
+          <img
+            src="/images/avatar.png"
+            alt="user-avatar"
+            className="object-cover w-8 h-8 rounded-full"
+          />
           <p className="text-sm font-medium uppercase">
             {user?.first_name} {user?.last_name}
           </p>
