@@ -64,22 +64,22 @@ export default function Home() {
       </div>
       <UserTap />
 
-      {/* Left-side random buttons */}
-      <div className="absolute bottom-10 left-5 space-y-4">
-        <button className="p-3 bg-blue-500 text-white rounded-lg shadow-md w-28 hover:bg-blue-600">
+      {/* Left-side random buttons (styled like the initial UserTap buttons) */}
+      <div className="absolute bottom-10 left-0 flex justify-start gap-2 px-5 w-full">
+        <button className="flex items-center justify-center p-3 bg-blue-500 text-white rounded-full border-2 border-white hover:bg-blue-600">
           Random Button 1
         </button>
-        <button className="p-3 bg-green-500 text-white rounded-lg shadow-md w-28 hover:bg-green-600">
+        <button className="flex items-center justify-center p-3 bg-green-500 text-white rounded-full border-2 border-white hover:bg-green-600">
           Random Button 2
         </button>
       </div>
 
-      {/* Right-side random buttons */}
-      <div className="absolute bottom-10 right-5 space-y-4">
-        <button className="p-3 bg-yellow-500 text-white rounded-lg shadow-md w-28 hover:bg-yellow-600">
+      {/* Right-side random buttons (styled like the initial UserTap buttons) */}
+      <div className="absolute bottom-10 right-0 flex justify-end gap-2 px-5 w-full">
+        <button className="flex items-center justify-center p-3 bg-yellow-500 text-white rounded-full border-2 border-white hover:bg-yellow-600">
           Random Button 3
         </button>
-        <button className="p-3 bg-red-500 text-white rounded-lg shadow-md w-28 hover:bg-red-600">
+        <button className="flex items-center justify-center p-3 bg-red-500 text-white rounded-full border-2 border-white hover:bg-red-600">
           Random Button 4
         </button>
       </div>
