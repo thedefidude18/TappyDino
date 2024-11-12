@@ -5,6 +5,7 @@ import UserGameDetails from "@/components/UserGameDetails";
 import levelConfig from "@/config/level-config";
 import { uesStore } from "@/store";
 import Image from 'next/image';
+import { compactNumber } from "@/lib/utils";
 
 
 export default function Home() {
@@ -47,33 +48,58 @@ export default function Home() {
 
       <div className="absolute left-0 top-1/2 transform -translate-y-1/2 flex flex-col items-center space-y-4">
         {/* Left side buttons */}
+       <div className="flex flex-col items-center space-y-1">
+  <button
+    className="glass-button w-14 h-13 flex items-center justify-center bg-[#00B1FF] border-2 border-[#1B3746] rounded-xl shadow-md transition-all duration-150 hover:shadow-lg active:shadow-sm"
+    aria-label="Earn per tap"
+  >
+    <img className="object-contain w-10 h-10 mr-1" src="/images/coin.png" alt="coin icon" />
+  </button>
+  <span className="text-xs font-bold text-center text-white">Earn per tap</span><span className="text-sm font-bold text-white">+{user?.earn_per_tap}</span>
+</div>
+
+
+
         <div className="flex flex-col items-center">
-          <button className="glass-button w-12 h-12" aria-label="Earn per tap">
-            <img src="/images/coin_box.png" alt="Earn per tap" />
-          </button>
-          <span className="text-xs font-bold mt-1">Earn per tap +2</span>
-        </div>
-        <div className="flex flex-col items-center">
-          <button className="glass-button w-12 h-12" aria-label="Coins to level up">
-            <img src="/images/coin_box.png" alt="Coins to level up" />
-          </button>
-          <span className="text-xs font-bold mt-1">Coins to level up 15k</span>
+        <button
+    className="glass-button w-14 h-13 flex items-center justify-center bg-[#D744C9] border-2 border-[#df69d4] rounded-xl shadow-md transition-all duration-150 hover:shadow-lg active:shadow-sm"
+    aria-label="Coins to level up"
+  >
+    <img className="object-contain w-10 h-10 mr-1" src="/images/coin.png" alt="coin icon" />
+  </button>
+  <span className="text-xs font-bold text-center text-white">Coins to level up</span><span className="text-sm font-bold text-white">
+      {user?.level ? compactNumber(user.level.to_balance) : 'N/A'}
+    </span>
         </div>
       </div>
 
       <div className="absolute right-0 top-1/2 transform -translate-y-1/2 flex flex-col items-center space-y-4">
         {/* Right side buttons */}
+        <div className="flex flex-col items-center space-y-1">
+  <button
+    className="glass-button w-14 h-13 flex items-center justify-center bg-[#00B1FF] border-2 border-[#1B3746] rounded-xl shadow-md transition-all duration-150 hover:shadow-lg active:shadow-sm"
+    aria-label="Profit per hour"
+  >
+    <img className="object-contain w-10 h-10 mr-1" src="/images/coin.png" alt="coin icon" />
+  </button>
+  <span className="text-xs font-bold text-center text-white">DINOH p/h</span>
+  <span className="text-sm font-bold text-white">
+    +{compactNumber(user.production_per_hour)}
+  </span>
+</div>
+
+
         <div className="flex flex-col items-center">
-          <button className="glass-button w-12 h-12" aria-label="Profit per hour">
-            <img src="/images/coin_box.png" alt="Profit per hour" />
-          </button>
-          <span className="text-xs font-bold mt-1">Profit per hour +0</span>
-        </div>
-        <div className="flex flex-col items-center">
-          <button className="glass-button w-12 h-12" aria-label="Other Action">
-            <img src="/images/coin_box.png" alt="Other Action" />
-          </button>
-          <span className="text-xs font-bold mt-1">Other Action</span>
+        <Link to="/leaderboard">
+  <button
+    className="glass-button w-14 h-13 flex items-center justify-center bg-[#f9f9f9] border-2 border-[#df69d4] rounded-xl shadow-md transition-all duration-150 hover:shadow-lg active:shadow-sm"
+    aria-label="Coins to level up"
+  >
+    <img className="object-contain w-10 h-10 mr-1" src="/images/coin.png" alt="coin icon" />
+    <span className="text-sm font-bold text-white"></span>
+  </button>
+</Link>
+  <span className="text-xs font-bold text-center text-white">Rank</span>
         </div>
       </div>
       <UserTap />
