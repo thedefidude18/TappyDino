@@ -64,7 +64,7 @@ export default function Earn() {
         <h1
          style={{
          fontFamily: "'ZCOOL KuaiLe', sans-serif",
-         fontSize: '1.0rem',
+         fontSize: '1.5rem',
          textAlign: 'center',
          marginTop: '1rem',
          color: '#ffffff',
