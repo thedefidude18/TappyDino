@@ -83,26 +83,45 @@ export default function Earn() {
          Dino Horizon Youtube
          </h1>
             <div className="mt-4 space-y-2">
-              {videoTasks.map((item) => (
-                <ListItem
-                  key={item.id}
-                  title={item.name}
-                  subtitle={
-                    <Price amount={`+${item.reward_coins.toLocaleString()}`} />
-                  }
-                  image={item.image || "/images/youtube.png"}
-                  onClick={() => {
-                    setActiveTask(item);
-                    setIsTaskDrawerOpen(true);
-                  }}
-                  action={
-                    item.is_rewarded ? (
-                      <CheckIcon className="w-6 h-6 text-[#27D46C]" />
-                    ) : undefined
-                  }
-                  disabled={item.is_rewarded}
-                />
-              ))}
+            <div className="mt-4 space-y-2">
+  {videoTasks.map((item) => (
+    <div 
+      key={item.id}
+      className="rounded-lg p-2 flex items-center space-x-3" 
+      style={{
+        backgroundColor: '#FFFFFF',  // White background for each item
+        borderRadius: '15px',
+        padding: '0.2rem',  // Reduced padding for compactness
+        boxShadow: '0 6px 0 #AC36A0, 0 8px 15px rgba(0, 0, 0, 0.2)',  // Magenta base effect
+        position: 'relative',
+        transform: 'translateY(-3px)',  // Slight lift for 3D effect
+      }}
+    >
+      <img 
+        src={item.image || "/images/youtube.png"} 
+        alt={item.name} 
+        className="w-10 h-10 rounded-full"  // Smaller image size for compact layout
+      />
+      
+      <ListItem
+        title={item.name}
+        subtitle={<Price amount={`+${item.reward_coins.toLocaleString()}`} className="text-black" />}
+        onClick={() => {
+          setActiveTask(item);
+          setIsTaskDrawerOpen(true);
+        }}
+        action={
+          item.is_rewarded ? (
+            <CheckIcon className="w-6 h-6 text-[#27D46C]" />
+          ) : undefined
+        }
+        disabled={item.is_rewarded}
+        className="flex-1 text-black font-semibold"  // Ensure all text inside ListItem is black
+      />
+    </div>
+  ))}
+</div>
+
             </div>
           </>
         )}
@@ -118,16 +137,31 @@ export default function Earn() {
          Tappy Dino Daily Reward
          </h1>
         <div className="mt-4 space-y-2">
-          <ListItem
-            title={"Daily DINOH"}
-            subtitle={
-              <Price
-                amount={`+${Number(totalDailyRewards).toLocaleString()}`}
-              />
-            }
-            image="/images/daily-task.png"
-            onClick={() => setIsDailyDrawerOpen(true)}
-          />
+        <div 
+  className="rounded-lg p-2 mb-4 flex items-center space-x-3" 
+  style={{
+    backgroundColor: '#FFFFFF',  // White container background
+    borderRadius: '15px',
+    padding: '0.2rem',  // Reduced padding to minimize height
+    boxShadow: '0 6px 0 #AC36A0, 0 8px 15px rgba(0, 0, 0, 0.2)', // Magenta base for 3D effect
+    position: 'relative',
+    transform: 'translateY(-3px)',  // Slight lift to accentuate the 3D base
+  }}
+>
+  <img 
+    src="/images/daily-task.png" 
+    alt="Daily Task" 
+    className="w-10 h-10 rounded-full"  // Smaller image size
+  />
+  
+  <ListItem
+    title="Daily DINOH"
+    subtitle={`+${Number(totalDailyRewards).toLocaleString()}`}
+    onClick={() => setIsDailyDrawerOpen(true)}
+    className="flex-1 text-black font-semibold"  // Styling for text with reduced padding
+  />
+</div>
+
         </div>
         {otherTasks.length > 0 && (
           <>
@@ -143,29 +177,47 @@ export default function Earn() {
          All Tasks
          </h1>
             <div className="mt-4 space-y-2">
-              {otherTasks.map((item) => (
-                <ListItem
-                  key={item.id}
-                  title={item.name}
-                  subtitle={
-                    <Price amount={`+${item.reward_coins.toLocaleString()}`} />
-                  }
-                  image={item.image || "/images/bounty.png"}
-                  className={cn(
-                    "disabled:opacity-50 disabled:mix-blend-luminosity"
-                  )}
-                  disabled={item.is_rewarded}
-                  action={
-                    item.is_rewarded ? (
-                      <CheckIcon className="w-6 h-6 text-[#27D46C]" />
-                    ) : undefined
-                  }
-                  onClick={() => {
-                    setActiveTask(item);
-                    setIsTaskDrawerOpen(true);
-                  }}
-                />
-              ))}
+            <div className="mt-4 space-y-2">
+  {otherTasks.map((item) => (
+    <div 
+      key={item.id}
+      className="rounded-lg p-2 flex items-center space-x-3" 
+      style={{
+        backgroundColor: '#FFFFFF',  // White background for each item
+        borderRadius: '15px',
+        padding: '0.2rem',  // Reduced padding for compactness
+        boxShadow: '0 6px 0 #AC36A0, 0 8px 15px rgba(0, 0, 0, 0.2)',  // Magenta base effect
+        position: 'relative',
+        transform: 'translateY(-3px)',  // Slight lift for 3D effect
+      }}
+    >
+      <img 
+        src={item.image || "/images/bounty.png"} 
+        alt={item.name} 
+        className="w-10 h-10 rounded-full"  // Smaller image size for compact layout
+      />
+      
+      <ListItem
+        title={item.name}
+        subtitle={<Price amount={`+${item.reward_coins.toLocaleString()}`} className="text-black" />}
+        className={cn("flex-1 text-black font-semibold", {
+          "disabled:opacity-50 disabled:mix-blend-luminosity": item.is_rewarded,
+        })}
+        disabled={item.is_rewarded}
+        action={
+          item.is_rewarded ? (
+            <CheckIcon className="w-6 h-6 text-[#27D46C]" />
+          ) : undefined
+        }
+        onClick={() => {
+          setActiveTask(item);
+          setIsTaskDrawerOpen(true);
+        }}
+      />
+    </div>
+  ))}
+</div>
+
             </div>
           </>
         )}
