@@ -11,19 +11,19 @@ export default function FirstTimeScreen({ startGame }: Props) {
       style={{ backgroundImage: `url('/images/bg.png')` }}
     >
       <div className="flex flex-col items-center">
-        <p className="text-sm font-bold text-center">YOUR STARTING BALANCE</p>
+        <p className="text-sm font-bold text-center">Welcome Bonus</p>
         <div className="flex items-center gap-3 mt-4">
           <img
             src="/images/coins.png"
             alt="coins"
             className="object-contain w-14 h-14"
           />
-          <span className="text-3xl font-bold text-gradient">5,000</span>
+          <span className="text-3xl font-bold text-gradient">5,000 DINOH</span>
         </div>
         <img src="/images/chest.png" alt="box" className="w-full" />
         <div className="w-full px-12">
           <Button className="w-full uppercase" onClick={() => startGame()}>
-            Join Crypto Coin
+            Join Tappy Dino!
           </Button>
         </div>
       </div>
