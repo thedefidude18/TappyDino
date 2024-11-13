@@ -12,7 +12,7 @@ export default function GameBanners() {
   const lowerBanner = {
     title: "Run, Jump and Earn Dino",
     buttonText: "Coming Soon",
-    backgroundImage: "url('https://raw.githubusercontent.com/thedefidude18/TappyDino/main/images/bannersmall.png')",
+    backgroundImage: "url('/images/bannersmall.png')",
   };
 
   return (
