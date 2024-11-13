@@ -12,7 +12,7 @@ export default function GameBanners() {
   const lowerBanner = {
     title: "Run, Jump and Earn Dino",
     buttonText: "Coming Soon",
-    backgroundImage: "url('/images/bannersmall.png')",
+    backgroundImage: "url('/images/friends.png')",
   };
 
   return (
@@ -94,12 +94,8 @@ export default function GameBanners() {
           marginBottom: "2vh", // Additional margin to ensure it's visible on screen
         }}
       >
-       
-          <h2 style={{ fontSize: "5vw", fontWeight: "bold", color: "#ffffff" }}>{lowerBanner.title}</h2>
-        </div>
-        
+                </div>
       </div>
     
   );
 }
-
