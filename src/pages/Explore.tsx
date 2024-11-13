@@ -6,7 +6,7 @@ export default function GameBanners() {
   const topBanner = {
     title: "Tap and Collect Dino",
     buttonText: "Tap now!",
-    backgroundImage: "url('https://raw.githubusercontent.com/RollupRadar/project23/main/images/tappo2.svg')",
+    backgroundImage: "url('/images/bannerbig.png')",
   };
 
   const lowerBanner = {
