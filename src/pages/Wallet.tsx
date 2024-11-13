@@ -74,25 +74,63 @@ export default function Wallet() {
          Connect your TON wallet.
          </h1>
 
-        <div className="mt-4 space-y-2">
-          <ListItem
-            title={"Pay"}
-            image="/images/wallet.png"
-            onClick={async () => {
-              if (network !== CHAIN.MAINNET) {
-                toast.error("Please switch to mainnet");
-                return;
-              }
-              tonPay.send(0.001, "CryptoCoin Payment");
-            }}
-          />
-          <ListItem
-            title={"Connect your TON Wallet"}
-            image="/images/wallet.png"
-            onClick={() => setOpenDrawer(true)}
-            action={isConnected && <CheckIcon className="text-green-500" />}
-          />
-        </div>
+         <div className="mt-4 space-y-2">
+  <div 
+    className="rounded-lg p-2 flex items-center space-x-3" 
+    style={{
+      backgroundColor: '#FFFFFF',  // White background for each item
+      borderRadius: '15px',
+      padding: '0.2rem',  // Reduced padding for compactness
+      boxShadow: '0 6px 0 #AC36A0, 0 8px 15px rgba(0, 0, 0, 0.2)',  // Magenta base effect
+      position: 'relative',
+      transform: 'translateY(-3px)',  // Slight lift for 3D effect
+    }}
+  >
+    <img 
+      src="/images/wallet.png" 
+      alt="Pay" 
+      className="w-10 h-10 rounded-full"  // Smaller image size for compact layout
+    />
+    
+    <ListItem
+      title="Pay"
+      onClick={async () => {
+        if (network !== CHAIN.MAINNET) {
+          toast.error("Please switch to mainnet");
+          return;
+        }
+        tonPay.send(0.001, "CryptoCoin Payment");
+      }}
+      className="flex-1 text-black font-semibold"  // Black text for all text inside ListItem
+    />
+  </div>
+  
+  <div 
+    className="rounded-lg p-2 flex items-center space-x-3" 
+    style={{
+      backgroundColor: '#FFFFFF',  // White background for each item
+      borderRadius: '15px',
+      padding: '0.2rem',  // Reduced padding for compactness
+      boxShadow: '0 6px 0 #AC36A0, 0 8px 15px rgba(0, 0, 0, 0.2)',  // Magenta base effect
+      position: 'relative',
+      transform: 'translateY(-3px)',  // Slight lift for 3D effect
+    }}
+  >
+    <img 
+      src="/images/wallet.png" 
+      alt="Connect Wallet" 
+      className="w-10 h-10 rounded-full"  // Smaller image size for compact layout
+    />
+    
+    <ListItem
+      title="Connect your TON Wallet"
+      onClick={() => setOpenDrawer(true)}
+      action={isConnected && <CheckIcon className="text-green-500" />}
+      className="flex-1 text-black font-semibold"  // Black text for all text inside ListItem
+    />
+  </div>
+</div>
+
       </div>
       <Drawer open={tonPay.isLoading} hideClose>
         <div className="flex flex-col items-center justify-center">
