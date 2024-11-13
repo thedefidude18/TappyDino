@@ -6,6 +6,7 @@ import Leaderboard from "./pages/Leaderboard";
 import Earn from "./pages/Earn";
 import Friends from "./pages/Friends";
 import Missions from "./pages/Missions";
+import Explore from "./pages/Explore";
 import Wallet from "./pages/Wallet";
 
 const router = createBrowserRouter([
@@ -14,6 +15,10 @@ const router = createBrowserRouter([
     element: <Layout />,
 
     children: [
+      {
+        path: "",
+        element: <Explore />,
+      },
       {
         path: "",
         element: <Home />,
