@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from 'react-router-dom';
 
 export default function GameBanners() {
   const [buttonText, setButtonText] = useState("Tap now!");
@@ -6,13 +7,13 @@ export default function GameBanners() {
   const topBanner = {
     title: "Tap and Collect Dino",
     buttonText: "Tap now!",
-    backgroundImage: "url('/images/bannerbig.png')",
+    backgroundImage: "url('https://raw.githubusercontent.com/RollupRadar/project23/main/images/tappo2.svg')",
   };
 
   const lowerBanner = {
     title: "Run, Jump and Earn Dino",
     buttonText: "Coming Soon",
-    backgroundImage: "url('/images/bannersmall.png')",
+    backgroundImage: "url('/images/friends.png')",
   };
 
   return (
@@ -45,33 +46,25 @@ export default function GameBanners() {
           padding: "2vw",
         }}
       >
-        <div
-          style={{
-            width: "100%",
-            padding: "2vw",
-            background: "linear-gradient(to bottom, rgba(0, 0, 0, 0.6), transparent)",
-            borderRadius: "5vw",
-          }}
-        >
-          <h2 style={{ fontSize: "5vw", fontWeight: "bold", color: "#ffffff" }}>{topBanner.title}</h2>
-        </div>
-        <button
-          onClick={() => setButtonText("Loading...")}
-          style={{
-            padding: "2vw 5vw",
-            background: "linear-gradient(to bottom, #FCD113, #F6BA06)",
-            color: "#000",
-            borderRadius: "1vw",
-            fontSize: "4vw",
-            fontWeight: "bold",
-            border: "none",
-            position: "absolute",
-            bottom: "2vw",
-            left: "2vw", // Positioned on bottom left
-          }}
-        >
-          {buttonText}
-        </button>
+        
+        <Link to="/home"> {/* Adjust this if the route is different */}
+      <button
+        style={{
+          padding: "2vw 5vw",
+          background: "linear-gradient(to bottom, #FCD113, #F6BA06)",
+          color: "#000",
+          borderRadius: "32vw",
+          fontSize: "4vw",
+          fontWeight: "bold",
+          border: "none",
+          position: "absolute",
+          bottom: "2vw",
+          left: "2vw", // Positioned on bottom left
+        }}
+      >
+       Tap now!
+      </button>
+    </Link>
       </div>
 
       {/* Lower Banner */}
