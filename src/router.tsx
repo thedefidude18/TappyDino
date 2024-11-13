@@ -13,8 +13,11 @@ const router = createBrowserRouter([
   {
     path: "/",
     element: <Layout />,
-
     children: [
+      {
+        index: true,           // Sets Home as the default route
+        element: <Home />,
+      },
       {
         path: "explore",
         element: <Explore />,
