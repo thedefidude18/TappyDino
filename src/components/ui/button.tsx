@@ -5,12 +5,12 @@ import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "@/lib/utils";
 
 const buttonVariants = cva(
-  "inline-flex items-center justify-center whitespace-nowrap select-none rounded-md text-sm font-medium ring-offset-white transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gray-950 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 dark:ring-offset-gray-950 dark:focus-visible:ring-gray-300",
+  "inline-flex items-center justify-center whitespace-nowrap select-none rounded-[15px] text-sm font-medium ring-offset-white transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gray-950 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 dark:ring-offset-gray-950 dark:focus-visible:ring-gray-300",
   {
     variants: {
       variant: {
         default:
-          "font-bold uppercase bg-[linear-gradient(180deg,#EEE8E2_0%,#C6C2BE_51.99%,_#C6C2BE_52%,#A48B74_100%)] text-black active:bg-[linear-gradient(180deg,#A48B74_0%,#C6C2BE_48%,#C6C2BE_48.01%,#EEE8E2_100%)] shadow-[0px_0px_20px_0px_rgba(255,218,163,0.27)] active:shadow-[0px_4px_4px_0px_rgba(0,0,0,0.25)_inset,_0px_0px_20px_0px_rgba(255,218,163,0.27)]",
+          "font-bold uppercase bg-[linear-gradient(180deg,#FFDD07_3%,#FCD113_64%,_#F6BA06_100%,#A48B74_50%)] text-black active:bg-[linear-gradient(180deg,#A48B74_0%,#C6C2BE_48%,#C6C2BE_48.01%,#EEE8E2_100%)] shadow-[0px_0px_20px_0px_rgba(255,218,163,0.27)] active:shadow-[0px_4px_4px_0px_rgba(0,0,0,0.25)_inset,_0px_0px_20px_0px_rgba(255,218,163,0.27)]",
         destructive:
           "bg-red-500 text-gray-50 hover:bg-red-500/90 dark:bg-red-900 dark:text-gray-50 dark:hover:bg-red-900/90",
         outline:
@@ -23,8 +23,8 @@ const buttonVariants = cva(
       },
       size: {
         default: "px-6 py-4",
-        sm: "h-9 rounded-md px-3",
-        lg: "h-11 rounded-md px-8",
+        sm: "h-9 rounded-[15px] px-3",
+        lg: "h-11 rounded-[15px] px-8",
         icon: "h-10 w-10",
       },
     },
