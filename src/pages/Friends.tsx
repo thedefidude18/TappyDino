@@ -71,48 +71,72 @@ export default function Friends() {
          You and your friends will receive DINOH bonus!
          </h1>
         <div className="mt-4 space-y-2">
-          <button className="flex items-center w-full gap-4 px-4 py-2 bg-white/10 rounded-xl">
-            <img
-              src="/images/chest.png"
-              alt="chest"
-              className="object-contain w-9 h-9 mix-blend-screen"
-            />
-            <div className="text-sm font-medium text-left">
-              <p>Invite a friend</p>
-              <div className="flex items-center space-x-1">
-                <img
-                  src="/images/coin.png"
-                  alt="coin"
-                  className="object-contain w-5 h-5"
-                />
-                <span className="font-bold text-primary">
-                  +{referral.base.welcome.toLocaleString()}
-                </span>
-                <span className="text-sm">for you and your friend</span>
-              </div>
-            </div>
-          </button>
-          <button className="flex items-center w-full gap-4 px-4 py-2 bg-white/10 rounded-xl">
-            <img
-              src="/images/chest.png"
-              alt="chest"
-              className="object-contain w-9 h-9 mix-blend-screen"
-            />
-            <div className="text-sm font-medium">
-              <p>Invite a friend with Telegram premium</p>
-              <div className="flex items-center space-x-1">
-                <img
-                  src="/images/coin.png"
-                  alt="coin"
-                  className="object-contain w-5 h-5"
-                />
-                <span className="font-bold text-primary">
-                  +{referral.premium.welcome.toLocaleString()}
-                </span>
-                <span className="text-sm">for you and your friend</span>
-              </div>
-            </div>
-          </button>
+        <div className="space-y-4">
+  <button 
+    className="flex items-center w-full gap-4 rounded-lg" 
+    style={{
+      backgroundColor: '#FFFFFF',  // White background
+      borderRadius: '15px',
+      padding: '0.5rem 1rem',  // Adjusted padding for compactness
+      boxShadow: '0 6px 0 #AC36A0, 0 8px 15px rgba(0, 0, 0, 0.2)',  // Magenta base effect
+      position: 'relative',
+      transform: 'translateY(-3px)',  // Slight lift for 3D effect
+    }}
+  >
+    <img
+      src="/images/chest.png"
+      alt="chest"
+      className="object-contain w-9 h-9"  // Removed mix-blend mode
+    />
+    <div className="text-sm font-medium text-left text-black">
+      <p>Invite a friend</p>
+      <div className="flex items-center space-x-1">
+        <img
+          src="/images/coin.png"
+          alt="coin"
+          className="object-contain w-5 h-5"
+        />
+        <span className="font-bold text-black">
+          +{referral.base.welcome.toLocaleString()}
+        </span>
+        <span className="text-sm text-black">for you and your friend</span>
+      </div>
+    </div>
+  </button>
+
+  <button 
+    className="flex items-center w-full gap-4 rounded-lg" 
+    style={{
+      backgroundColor: '#FFFFFF',  // White background
+      borderRadius: '15px',
+      padding: '0.5rem 1rem',  // Adjusted padding for compactness
+      boxShadow: '0 6px 0 #AC36A0, 0 8px 15px rgba(0, 0, 0, 0.2)',  // Magenta base effect
+      position: 'relative',
+      transform: 'translateY(-3px)',  // Slight lift for 3D effect
+    }}
+  >
+    <img
+      src="/images/chest.png"
+      alt="chest"
+      className="object-contain w-9 h-9"  // Removed mix-blend mode
+    />
+    <div className="text-sm font-medium text-left text-black">
+      <p>Invite a friend with Telegram premium</p>
+      <div className="flex items-center space-x-1">
+        <img
+          src="/images/coin.png"
+          alt="coin"
+          className="object-contain w-5 h-5"
+        />
+        <span className="font-bold text-black">
+          +{referral.premium.welcome.toLocaleString()}
+        </span>
+        <span className="text-sm text-black">for you and your friend</span>
+      </div>
+    </div>
+  </button>
+</div>
+
         </div>
         <div className="relative flex-1">
           <div className="absolute inset-0 w-full h-[calc(100%-1rem)] py-6 mt-4 overflow-y-scroll">
