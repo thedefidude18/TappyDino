@@ -2,9 +2,9 @@ import { Link, useLocation } from "react-router-dom";
 import { cn } from "../lib/utils";
 
 const links = [
-  { name: "Explore", link: "/", image: "/images/playnav.png" },
+  { name: "Explore", link: "/explore", image: "/images/playnav.png" },
   { name: "Friends", link: "/friends", image: "/images/friends.png" },
-  { name: "Tappy", link: "/", image: "/images/explore.png" },
+  { name: "Tappy", link: "/home", image: "/images/explore.png" },
   { name: "Tasks", link: "/earn", image: "/images/bounty.png" },
   { name: "Wallet", link: "/wallet", image: "/images/toncoin.png" },
 ];
