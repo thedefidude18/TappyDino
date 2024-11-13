@@ -54,7 +54,7 @@ export default function Earn() {
     >
       <div className="flex flex-col flex-1 w-full h-full px-6 py-8 pb-24 mt-12 modal-body">
         <img
-          src="/images/coins.png"
+          src="/images/bounty.png"
           alt="coins"
           className="object-contain w-32 h-32 mx-auto"
         />
@@ -67,11 +67,21 @@ export default function Earn() {
          color: '#ffffff',
          }}
          >
-         EARN MORE DINOH
+         EARN DINOH FROM TASKS
          </h1>
         {videoTasks.length > 0 && (
           <>
-            <p className="mt-2.5 font-medium text-center">Dino Horizon YouTube</p>
+            <h1
+         style={{
+         fontFamily: "'ZCOOL KuaiLe', sans-serif",
+         fontSize: '1.0rem',
+         textAlign: 'center',
+         marginTop: '1rem',
+         color: '#ffffff',
+         }}
+         >
+         Dino Horizon Youtube
+         </h1>
             <div className="mt-4 space-y-2">
               {videoTasks.map((item) => (
                 <ListItem
@@ -96,10 +106,20 @@ export default function Earn() {
             </div>
           </>
         )}
-        <p className="mt-8 font-medium text-center">Tappy Daily Tasks</p>
+        <h1
+         style={{
+         fontFamily: "'ZCOOL KuaiLe', sans-serif",
+         fontSize: '1.0rem',
+         textAlign: 'center',
+         marginTop: '1rem',
+         color: '#ffffff',
+         }}
+         >
+         Tappy Dino Daily Reward
+         </h1>
         <div className="mt-4 space-y-2">
           <ListItem
-            title={"Daily reward"}
+            title={"Daily DINOH"}
             subtitle={
               <Price
                 amount={`+${Number(totalDailyRewards).toLocaleString()}`}
@@ -111,7 +131,17 @@ export default function Earn() {
         </div>
         {otherTasks.length > 0 && (
           <>
-            <p className="mt-8 font-medium text-center">All Tasks</p>
+            <h1
+         style={{
+         fontFamily: "'ZCOOL KuaiLe', sans-serif",
+         fontSize: '1.0rem',
+         textAlign: 'center',
+         marginTop: '1rem',
+         color: '#ffffff',
+         }}
+         >
+         All Tasks
+         </h1>
             <div className="mt-4 space-y-2">
               {otherTasks.map((item) => (
                 <ListItem
@@ -141,7 +171,17 @@ export default function Earn() {
         )}
         {referralTasks.data && referralTasks.data?.length > 0 && (
           <>
-            <p className="mt-8 font-medium text-center">Referral Tasks</p>
+            <h1
+         style={{
+         fontFamily: "'ZCOOL KuaiLe', sans-serif",
+         fontSize: '1.0rem',
+         textAlign: 'center',
+         marginTop: '1rem',
+         color: '#ffffff',
+         }}
+         >
+         Refrral Tasks
+         </h1>
             <div className="mt-4 space-y-2">
               {referralTasks.data.map((item) => (
                 <ListItem
