@@ -7,7 +7,7 @@ export default function GameBanners() {
   const topBanner = {
     title: "Tap and Collect Dino",
     buttonText: "Tap now!",
-    backgroundImage: "url('/images/bannersmall.png')",
+    backgroundImage: "url('/images/bannerbig.png')",
   };
 
   const lowerBanner = {
