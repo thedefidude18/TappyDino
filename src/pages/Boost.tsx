@@ -37,7 +37,7 @@ const boosterDetails: Record<
 > = {
   multi_tap: {
     title: "Multitap",
-    description: "Increase the amount of coins you can earn per tap",
+    description: "Increase the amount of DINOH you can earn per tap",
     shortDescription: "coins for tap",
     image: "/images/coin.png",
   },
