@@ -78,7 +78,7 @@ export default function GameBanners() {
       <div
         style={{
           width: "94vw",
-          height: "25vh",
+          height: "27vh",
           backgroundImage: lowerBanner.backgroundImage,
           backgroundSize: "cover",
           backgroundPosition: "center",
