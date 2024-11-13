@@ -64,7 +64,7 @@ export default function Home() {
   >
     <img className="object-contain w-10 h-10 mr-1" src="/images/coin.png" alt="coin icon" />
   </button>
-  <span className="text-xs font-bold text-center text-white">Per tap</span><span className="text-sm font-bold text-white">+{user?.earn_per_tap}</span>
+  <span className="text-xs font-bold text-center text-white">Earn Per tap</span><span className="text-sm font-bold text-white">+{user?.earn_per_tap}</span>
 </div>
 
 
