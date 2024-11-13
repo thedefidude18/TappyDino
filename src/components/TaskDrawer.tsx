@@ -74,7 +74,7 @@ export default function TaskDrawer({
       {task.is_submitted &&
         dayjs().isBefore(dayjs(task.submitted_at).add(60, "m")) && (
           <p className="mt-6 text-center text-white/80">
-            Task submitted! Please Wait 1 hour for the moderation check to claim
+            Task submitted! Please check back in 1 hour after verification to claim
             the prize.
           </p>
         )}
