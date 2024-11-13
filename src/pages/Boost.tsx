@@ -110,14 +110,34 @@ export default function Boost() {
   });
 
   return (
-    <div className="flex flex-col justify-end bg-cover flex-1" style={{backgroundImage: `url(${levelConfig.bg[user?.level?.level || 1]})`,}}>
-      <div className="min-h-[600px] w-full modal-body py-8 px-6">
-        <h1 className="text-2xl font-bold text-center uppercase">
-          Boost your game
-        </h1>
-        <p className="mt-8 text-sm font-bold text-center uppercase">
-          Free Daily Booster
-        </p>
+<div
+      className="flex flex-col justify-end bg-cover flex-1"
+      style={{
+        background: 'linear-gradient(to bottom, #575EFF, rgba(14, 203, 255, 0.94))'
+      }}
+    >      <div className="min-h-[600px] w-full modal-body py-8 px-6">
+         <h1
+         style={{
+         fontFamily: "'ZCOOL KuaiLe', sans-serif",
+         fontSize: '1.5rem',
+         textAlign: 'center',
+         marginTop: '1rem',
+         color: '#ffffff',
+         }}
+         >
+         Boost your game
+         </h1>
+         <h1
+         style={{
+         fontFamily: "'ZCOOL KuaiLe', sans-serif",
+         fontSize: '1.0rem',
+         textAlign: 'center',
+         marginTop: '1rem',
+         color: '#ffffff',
+         }}
+         >
+         Free Daily Booster
+         </h1>
         <div className="mt-4">
           <button
             className="flex items-center w-full gap-4 px-4 py-2 bg-white/10 rounded-xl"
@@ -148,7 +168,17 @@ export default function Boost() {
             )}
           </button>
         </div>
-        <p className="mt-8 text-sm font-bold text-center uppercase">Boosters</p>
+        <h1
+         style={{
+         fontFamily: "'ZCOOL KuaiLe', sans-serif",
+         fontSize: '1.0rem',
+         textAlign: 'center',
+         marginTop: '1rem',
+         color: '#ffffff',
+         }}
+         >
+         Boosters
+         </h1>
         <div className="mt-4 space-y-2">
           <button
             className="flex items-center w-full gap-4 px-4 py-2 bg-white/10 rounded-xl"
