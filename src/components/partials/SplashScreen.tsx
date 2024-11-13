@@ -42,25 +42,10 @@ export default function SplashScreen() {
             alt="loader"
             className="mt-3 animate-spin"
           />
-          <p className="mt-3 text-sm font-bold uppercase text-primary">
-            
+          <p className="mt-3 text-sm font-bold uppercase text-primary"> 
           </p>
-          <p className="mt-1 font-medium"></p>
-          <div className="flex items-center gap-4 mt-6">
-            {socialLinks.map((link) => (
-              <a
-                key={link.title}
-                href={link.url}
-                target="_blank"
-                rel="noreferrer"
-                className="flex items-center justify-center w-12 h-12 border-2 rounded-full text-primary border-primary/10 bg-white/5"
-              >
-                <link.icon className="w-6 h-6" />
-              </a>
-            ))}
           </div>
         </div>
-      </div>
+     
   );
 }
-
