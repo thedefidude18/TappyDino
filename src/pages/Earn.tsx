@@ -9,7 +9,6 @@ import { useQuery } from "@tanstack/react-query";
 import { $http } from "@/lib/http";
 import { cn } from "@/lib/utils";
 import { uesStore } from "@/store";
-import LoadingPage from "@/components/LoadingPage";
 import ReferralTaskDrawer from "@/components/ReferralTaskDrawer";
 import levelConfig from "@/config/level-config";
 import { useUserStore } from "@/store/user-store";
@@ -26,7 +25,7 @@ export default function Earn() {
 
   const user = useUserStore();
 
-  const { data, isLoading } = useQuery({
+  const { data } = useQuery({
     queryKey: ["tasks"],
     queryFn: () => $http.$get<TaskType[]>("/clicker/tasks"),
   });
@@ -46,15 +45,13 @@ export default function Earn() {
     [data]
   );
 
-  if (isLoading) return <LoadingPage />;
-
   return (
     <div
-  className="flex flex-col justify-end bg-cover flex-1"
-  style={{
-    background: 'linear-gradient(to bottom, #575EFF, rgba(14, 203, 255, 0.94))'
-  }}
->
+      className="flex flex-col justify-end bg-cover flex-1"
+      style={{
+        background: 'linear-gradient(to bottom, #575EFF, rgba(14, 203, 255, 0.94))'
+      }}
+    >
       <div className="flex flex-col flex-1 w-full h-full px-6 py-8 pb-24 mt-12 modal-body">
         <img
           src="/images/coins.png"
