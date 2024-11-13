@@ -12,7 +12,7 @@ export default function GameBanners() {
   const lowerBanner = {
     title: "Run, Jump and Earn Dino",
     buttonText: "Coming Soon",
-    backgroundImage: "url('/images/friends.png')",
+    backgroundImage: "url('/images/bannersmall.png')",
   };
 
   return (
