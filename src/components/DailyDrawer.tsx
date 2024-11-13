@@ -38,9 +38,19 @@ export default function DailyDrawer({ ...props }: DrawerProps) {
   return (
     <Drawer {...props}>
       <img src="/images/coins.png" alt="coins" className="mx-auto h-28" />
-      <h2 className="mt-6 text-2xl font-bold text-center">Daily Reward</h2>
+      <h1
+         style={{
+         fontFamily: "'ZCOOL KuaiLe', sans-serif",
+         fontSize: '1.0rem',
+         textAlign: 'center',
+         marginTop: '1rem',
+         color: '#ffffff',
+         }}
+         >
+         Dino Dinoh Rewards
+         </h1>
       <p className="mt-2.5 text-center font-medium">
-        Acquire coins for logging into the game daily without skipping
+        Acquire DINOH for logging into the game daily without skipping
       </p>
       <div className="grid grid-cols-4 gap-3 mt-10 overflow-y-auto max-h-64">
         {dailyTasks.data?.map((item, key) => (
