@@ -55,62 +55,61 @@ export default function Home() {
 </div>
 
 
-      <div className="absolute left-0 top-1/2 transform -translate-y-1/2 flex flex-col items-center space-y-4">
-        {/* Left side buttons */}
-       <div className="flex flex-col items-center space-y-1">
-  <button
-    className="glass-button w-14 h-14 flex items-center justify-center bg-[#00B1FF] border-2 border-[#1B3746] rounded-xl shadow-md transition-all duration-150 hover:shadow-lg active:shadow-sm"
-    aria-label="Earn per tap"
-  >
-    <img className="object-contain w-10 h-10 mr-1" src="/images/coin.png" alt="coin icon" />
-  </button>
-  <span className="text-xs font-bold text-center text-white">per tap</span><span className="text-sm font-bold text-white">+{user?.earn_per_tap}</span>
-</div>
+<div className="absolute left-0 top-1/2 transform -translate-y-1/2 flex flex-col items-center space-y-4">
+  {/* Left side buttons */}
+  <div className="flex flex-col items-center space-y-1">
+    <button
+      className="glass-button w-14 h-14 flex items-center justify-center bg-[#00B1FF] border-2 border-[#1B3746] rounded-xl shadow-md transition-all duration-150 hover:shadow-lg active:shadow-sm"
+      aria-label="Earn per tap"
+    >
+      <img className="object-contain w-10 h-10 mr-1" src="/images/coin.png" alt="coin icon" />
+    </button>
+    <span className="text-xs font-bold text-center text-white">per tap</span>
+    <span className="text-sm font-bold text-white">+{user?.earn_per_tap}</span>
+  </div>
 
-
-
-        <div className="flex flex-col items-center">
-        <button
-    className="glass-button w-14 h-14 flex items-center justify-center bg-[#D744C9] border-2 border-[#df69d4] rounded-xl shadow-md transition-all duration-150 hover:shadow-lg active:shadow-sm"
-    aria-label="Coins to level up"
-  >
-    <img className="object-contain w-10 h-10 mr-1" src="/images/coin.png" alt="coin icon" />
-  </button>
-  <span className="text-xs font-bold text-center text-white">Coins to level up</span><span className="text-sm font-bold text-white">
+  <div className="flex flex-col items-center space-y-1">
+    <button
+      className="glass-button w-14 h-14 flex items-center justify-center bg-[#D744C9] border-2 border-[#df69d4] rounded-xl shadow-md transition-all duration-150 hover:shadow-lg active:shadow-sm"
+      aria-label="Coins to level up"
+    >
+      <img className="object-contain w-10 h-10 mr-1" src="/images/coin.png" alt="coin icon" />
+    </button>
+    <span className="text-xs font-bold text-center text-white">Coins to level up</span>
+    <span className="text-sm font-bold text-white">
       {user?.level ? compactNumber(user.level.to_balance) : 'N/A'}
     </span>
-        </div>
-      </div>
-
-      <div className="absolute right-0 top-1/2 transform -translate-y-1/2 flex flex-col items-center space-y-4">
-        {/* Right side buttons */}
-        <div className="flex flex-col items-center space-y-1">
-  <button
-    className="glass-button w-14 h-14 flex items-center justify-center bg-[#00B1FF] border-2 border-[#1B3746] rounded-xl shadow-md transition-all duration-150 hover:shadow-lg active:shadow-sm"
-    aria-label="Profit per hour"
-  >
-    <img className="object-contain w-10 h-10 mr-2" src="/images/clock.png" alt="clock" />
-  </button>
-  <span className="text-xs font-bold text-center text-white">DINOH p/h</span>
-  <span className="text-sm font-bold text-white">
-    +{compactNumber(user.production_per_hour)}
-  </span>
+  </div>
 </div>
 
+<div className="absolute right-5 top-1/2 transform -translate-y-1/2 flex flex-col items-center space-y-4">
+  {/* Right side buttons */}
+  <div className="flex flex-col items-center space-y-1">
+    <button
+      className="glass-button w-14 h-14 flex items-center justify-center bg-[#00B1FF] border-2 border-[#1B3746] rounded-xl shadow-md transition-all duration-150 hover:shadow-lg active:shadow-sm"
+      aria-label="Profit per hour"
+    >
+      <img className="object-contain w-10 h-10 mr-2" src="/images/clock.png" alt="coin icon" />
+    </button>
+    <span className="text-xs font-bold text-center text-white">DINOH p/h</span>
+    <span className="text-sm font-bold text-white">
+      +{compactNumber(user.production_per_hour)}
+    </span>
+  </div>
 
-        <div className="flex flex-col items-center">
-        <Link to="/leaderboard">
-  <button
-    className="glass-button w-14 h-14 flex items-center justify-center bg-[#f9f9f9] border-2 border-[#df69d4] rounded-xl shadow-md transition-all duration-150 hover:shadow-lg active:shadow-sm"
-    aria-label="Coins to level up"
-  >
-    <img className="object-contain w-10 h-10 mr-1" src="/images/rank.png" alt="rank" />
-    <span className="text-sm font-bold text-white"></span>
-  </button>
-</Link>
-  <span className="text-xs font-bold text-center text-white">Rank</span>
-        </div>
-      </div>
+  <div className="flex flex-col items-center space-y-1">
+    <Link to="/leaderboard">
+      <button
+        className="glass-button w-14 h-14 flex items-center justify-center bg-[#f9f9f9] border-2 border-[#df69d4] rounded-xl shadow-md transition-all duration-150 hover:shadow-lg active:shadow-sm"
+        aria-label="Coins to level up"
+      >
+        <img className="object-contain w-10 h-10 mr-1" src="/images/rank.png" alt="coin icon" />
+      </button>
+    </Link>
+    <span className="text-xs font-bold text-center text-white">Rank</span>
+  </div>
+</div>
+
       <UserTap />
     </div>
   );
