@@ -77,7 +77,7 @@ export default function Leaderboard() {
                   <img
                     src="/images/rank.png" // Replace with your trophy icon path
                     alt="rank"
-                    className="absolute top-0 right-0 w-10 h-10 transform translate-x-1/2 -translate-y-1/2" // Position trophy icon on the corner edge
+                    className="absolute top-3 right-4 w-10 h-10 transform translate-x-1/2 -translate-y-1/2" // Position trophy icon on the corner edge
                   />
 
                   <img
