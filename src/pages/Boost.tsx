@@ -37,7 +37,7 @@ const boosterDetails: Record<
 > = {
   multi_tap: {
     title: "Multitap",
-    description: "Increase the amount of DINOH you can earn per tap",
+    description: "Increase the amount of coins you can earn per tap",
     shortDescription: "coins for tap",
     image: "/images/coin.png",
   },
@@ -139,34 +139,42 @@ export default function Boost() {
          Free Daily Booster
          </h1>
         <div className="mt-4">
-          <button
-            className="flex items-center w-full gap-4 px-4 py-2 bg-white/10 rounded-xl"
-            onClick={() => {
-              setOpen(true);
-              setActiveBooster("full_energy");
-            }}
-            disabled={!canUseDailyResetEnergy}
-          >
-            <img
-              src="/images/extra-pewer.png"
-              alt="extra-power"
-              className="object-contain w-9 h-9 mix-blend-screen"
-            />
-            <div className="text-sm font-medium text-left">
-              <p>Full energy</p>
-              <p className={cn({ "text-white/80": !canUseDailyResetEnergy })}>
-                {maxDailyResetEnergy - dailyResetEnergy.uses_today}/
-                {maxDailyResetEnergy} available
-              </p>
-            </div>
-            {!canUseDailyResetEnergy && (
-              <div className="self-end h-full ml-auto text-sm text-white/80">
-                <span>
-                  {dayjs(dailyResetEnergy.next_available_at).fromNow(true)} left
-                </span>
-              </div>
-            )}
-          </button>
+        <button
+  className="flex items-center w-full gap-4 px-4 py-2 rounded-xl"
+  onClick={() => {
+    setOpen(true);
+    setActiveBooster("full_energy");
+  }}
+  disabled={!canUseDailyResetEnergy}
+  style={{
+    backgroundColor: '#FFFFFF',  // White background
+    borderRadius: '15px',
+    padding: '0.5rem 1rem',  // Adjusted padding for compactness
+    boxShadow: '0 6px 0 #AC36A0, 0 8px 15px rgba(0, 0, 0, 0.2)',  // Magenta base effect
+    position: 'relative',
+    transform: 'translateY(-3px)',  // Slight lift for 3D effect
+  }}
+>
+  <img
+    src="/images/extra-pewer.png"
+    alt="extra-power"
+    className="object-contain w-9 h-9"  // Removed mix-blend mode to make the image visible
+  />
+  <div className="text-sm font-medium text-left text-black">  {/* Set text color to black */}
+    <p>Full energy</p>
+    <p className={cn({ "text-white/80": !canUseDailyResetEnergy })}>
+      {maxDailyResetEnergy - dailyResetEnergy.uses_today}/{maxDailyResetEnergy} available
+    </p>
+  </div>
+  {!canUseDailyResetEnergy && (
+    <div className="self-end h-full ml-auto text-sm text-white/80">
+      <span>
+        {dayjs(dailyResetEnergy.next_available_at).fromNow(true)} left
+      </span>
+    </div>
+  )}
+</button>
+
         </div>
         <h1
          style={{
@@ -180,62 +188,78 @@ export default function Boost() {
          Boosters
          </h1>
         <div className="mt-4 space-y-2">
-          <button
-            className="flex items-center w-full gap-4 px-4 py-2 bg-white/10 rounded-xl"
-            onClick={() => {
-              setOpen(true);
-              setActiveBooster("multi_tap");
-            }}
-          >
-            <img
-              src="/images/coin.png"
-              alt="coin"
-              className="object-contain w-9 h-9 mix-blend-screen"
-            />
-            <div className="text-sm font-medium text-left">
-              <p>Multi tap</p>
-              <div className="flex items-center space-x-1">
-                <img
-                  src="/images/coin.png"
-                  alt="coin"
-                  className="object-contain w-5 h-5"
-                />
-                <span className="font-bold">
-                  {compactNumber(boosters.multi_tap.cost)}
-                </span>
-                <span className="text-sm">{boosters.multi_tap.level} LVL</span>
-              </div>
-            </div>
-          </button>
-          <button
-            className="flex items-center w-full gap-4 px-4 py-2 bg-white/10 rounded-xl"
-            onClick={() => {
-              setOpen(true);
-              setActiveBooster("energy_limit");
-            }}
-          >
-            <img
-              src="/images/bolt.png"
-              alt="bolt"
-              className="object-contain w-9 h-9 mix-blend-screen"
-            />
-            <div className="text-sm font-medium text-left">
-              <p>Energy limit</p>
-              <div className="flex items-center space-x-1">
-                <img
-                  src="/images/coin.png"
-                  alt="coin"
-                  className="object-contain w-5 h-5"
-                />
-                <span className="font-bold">
-                  {compactNumber(boosters.energy_limit.cost)}
-                </span>
-                <span className="text-sm">
-                  {boosters.energy_limit.level} LVL
-                </span>
-              </div>
-            </div>
-          </button>
+        <button
+  className="flex items-center w-full gap-4 px-4 py-2 rounded-xl"
+  onClick={() => {
+    setOpen(true);
+    setActiveBooster("multi_tap");
+  }}
+  style={{
+    backgroundColor: '#FFFFFF',  // White background
+    borderRadius: '15px',
+    padding: '0.5rem 1rem',  // Adjusted padding for compactness
+    boxShadow: '0 6px 0 #AC36A0, 0 8px 15px rgba(0, 0, 0, 0.2)',  // Magenta base effect
+    position: 'relative',
+    transform: 'translateY(-3px)',  // Slight lift for 3D effect
+  }}
+>
+  <img
+    src="/images/coin.png"
+    alt="coin"
+    className="object-contain w-9 h-9"  // Removed mix-blend mode to make the image visible
+  />
+  <div className="text-sm font-medium text-left text-black">  {/* Set text color to black */}
+    <p>Multi tap</p>
+    <div className="flex items-center space-x-1">
+      <img
+        src="/images/coin.png"
+        alt="coin"
+        className="object-contain w-5 h-5"
+      />
+      <span className="font-bold">
+        {compactNumber(boosters.multi_tap.cost)}
+      </span>
+      <span className="text-sm">{boosters.multi_tap.level} LVL</span>
+    </div>
+  </div>
+</button>
+<button
+  className="flex items-center w-full gap-4 px-4 py-2 rounded-xl"
+  onClick={() => {
+    setOpen(true);
+    setActiveBooster("energy_limit");
+  }}
+  style={{
+    backgroundColor: '#FFFFFF',  // White background
+    borderRadius: '15px',
+    padding: '0.5rem 1rem',  // Adjusted padding for compactness
+    boxShadow: '0 6px 0 #AC36A0, 0 8px 15px rgba(0, 0, 0, 0.2)',  // Magenta base effect
+    position: 'relative',
+    transform: 'translateY(-3px)',  // Slight lift for 3D effect
+  }}
+>
+  <img
+    src="/images/bolt.png"
+    alt="bolt"
+    className="object-contain w-9 h-9"  // Removed mix-blend mode to make the image visible
+  />
+  <div className="text-sm font-medium text-left text-black">  {/* Set text color to black */}
+    <p>Energy limit</p>
+    <div className="flex items-center space-x-1">
+      <img
+        src="/images/coin.png"
+        alt="coin"
+        className="object-contain w-5 h-5"
+      />
+      <span className="font-bold">
+        {compactNumber(boosters.energy_limit.cost)}
+      </span>
+      <span className="text-sm">
+        {boosters.energy_limit.level} LVL
+      </span>
+    </div>
+  </div>
+</button>
         </div>
       </div>
       <Drawer open={open} onOpenChange={setOpen}>
