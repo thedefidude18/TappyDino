@@ -62,7 +62,7 @@ export default function Home() {
       className="glass-button w-14 h-14 flex items-center justify-center bg-[#00B1FF] border-2 border-[#1B3746] rounded-xl shadow-md transition-all duration-150 hover:shadow-lg active:shadow-sm"
       aria-label="Earn per tap"
     >
-      <img className="object-contain w-10 h-10 mr-1" src="/images/coin.png" alt="coin icon" />
+      <img className="object-contain w-10 h-10 mr-1" src="/images/tapper.png" alt="coin icon" />
     </button>
     <span className="text-xs font-bold text-center text-white">per tap</span>
     <span className="text-sm font-bold text-white">+{user?.earn_per_tap}</span>
