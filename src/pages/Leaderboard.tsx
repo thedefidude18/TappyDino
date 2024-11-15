@@ -186,8 +186,8 @@ export default function Leaderboard() {
               alt="coin"
               className="object-contain w-4 h-4"
             />
-            <span className="font-bold text-black">
-              {compactNumber(item.production_per_hour)}
+            <span className="font-md text-black">
+              {compactNumber(item.balance)}
             </span>
           </div>
         </div>
