@@ -42,7 +42,7 @@ export default function Friends() {
     background: 'linear-gradient(to bottom, #575EFF, rgba(14, 203, 255, 0.94))'
   }}
 >
-       <div className="flex flex-col flex-1 w-full h-full px-6 py-2 pb-24 mt-10 modal-body">
+       <div className="flex flex-col flex-1 w-full h-full px-6 py-1 pb-24 mt-5 modal-body">
         <img
           src="/images/friends.png"
           alt="coins"
@@ -51,9 +51,9 @@ export default function Friends() {
         <h1
          style={{
          fontFamily: "'ZCOOL KuaiLe', sans-serif",
-         fontSize: '1.5rem',
+         fontSize: '1.3rem',
          textAlign: 'center',
-         marginTop: '1rem',
+         marginTop: '0.4rem',
          color: '#ffffff',
          }}
          >
@@ -64,7 +64,7 @@ export default function Friends() {
          fontFamily: "'ZCOOL KuaiLe', sans-serif",
          fontSize: '1.0rem',
          textAlign: 'center',
-         marginTop: '1rem',
+         marginTop: '0.2rem',
          color: '#ffffff',
          }}
          >
@@ -77,7 +77,7 @@ export default function Friends() {
     style={{
       backgroundColor: '#FFFFFF',  // White background
       borderRadius: '15px',
-      padding: '0.5rem 1rem',  // Adjusted padding for compactness
+      padding: '0.4rem 1rem',  // Adjusted padding for compactness
       boxShadow: '0 6px 0 #AC36A0, 0 8px 15px rgba(0, 0, 0, 0.2)',  // Magenta base effect
       position: 'relative',
       transform: 'translateY(-3px)',  // Slight lift for 3D effect
@@ -98,38 +98,6 @@ export default function Friends() {
         />
         <span className="font-bold text-black">
           +{referral.base.welcome.toLocaleString()}
-        </span>
-        <span className="text-sm text-black">for you and your friend</span>
-      </div>
-    </div>
-  </button>
-
-  <button 
-    className="flex items-center w-full gap-4 rounded-lg" 
-    style={{
-      backgroundColor: '#FFFFFF',  // White background
-      borderRadius: '15px',
-      padding: '0.5rem 1rem',  // Adjusted padding for compactness
-      boxShadow: '0 6px 0 #AC36A0, 0 8px 15px rgba(0, 0, 0, 0.2)',  // Magenta base effect
-      position: 'relative',
-      transform: 'translateY(-3px)',  // Slight lift for 3D effect
-    }}
-  >
-    <img
-      src="/images/chest.png"
-      alt="chest"
-      className="object-contain w-9 h-9"  // Removed mix-blend mode
-    />
-    <div className="text-sm font-medium text-left text-black">
-      <p>Invite a friend with Telegram premium</p>
-      <div className="flex items-center space-x-1">
-        <img
-          src="/images/coin.png"
-          alt="coin"
-          className="object-contain w-5 h-5"
-        />
-        <span className="font-bold text-black">
-          +{referral.premium.welcome.toLocaleString()}
         </span>
         <span className="text-sm text-black">for you and your friend</span>
       </div>
