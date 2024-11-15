@@ -232,27 +232,27 @@ export default function Friends() {
             )}
           </div>
         </div>
-        <div className="flex gap-3 mt-4">
-          <Button
-            className="flex-shrink-0"
-            onClick={() => {
-              copy(referralLink);
-              toast.success("Referral link copied to clipboard");
-            }}
-          >
-            <CopyIcon className="w-5 h-5" />
-          </Button>
-          <Button
-            className="flex-1"
-            onClick={() =>
-              Telegram.WebApp.openTelegramLink(
-                `https://t.me/share/url?text=${shareMessage}&url=${referralLink}`
-              )
-            }
-          >
-            Invite a friend
-          </Button>
-        </div>
+        <div className="flex gap-3" style={{ marginTop: '1rem' }}>
+  <Button
+    className="flex-shrink-0"
+    onClick={() => {
+      copy(referralLink);
+      toast.success("Referral link copied to clipboard");
+    }}
+  >
+    <CopyIcon className="w-5 h-5" />
+  </Button>
+  <Button
+    className="flex-1"
+    onClick={() =>
+      Telegram.WebApp.openTelegramLink(
+        `https://t.me/share/url?text=${shareMessage}&url=${referralLink}`
+      )
+    }
+  >
+    Invite a friend
+  </Button>
+</div>
       </div>
     </div>
   );
