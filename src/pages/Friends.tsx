@@ -107,11 +107,11 @@ export default function Friends() {
 
         </div>
         <div className="relative flex-1">
-          <div className="absolute inset-0 w-full h-[calc(100%-1rem)] py-6 mt-4 overflow-y-scroll">
+          <div className="absolute inset-0 w-full h-[calc(100%-1rem)] py-6 mt-2 overflow-y-scroll">
             {!showMoreBonuses ? (
               <div className="text-center">
                 <button
-                  className="rounded-full border-2 border-[#FFDAA3]/10 text-[#FFDAA3] text-xs font-bold py-2.5 px-4"
+                  className="rounded-full border-2 border-[#FFDAA3]/10 text-[#FFDAA3] text-xs font-bold py-1.5 px-4"
                   onClick={() => setShowMoreBonuses((value) => !value)}
                 >
                   More bonuses
