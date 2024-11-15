@@ -7,8 +7,10 @@ type Props = {
 export default function FirstTimeScreen({ startGame }: Props) {
   return (
     <div
-      className="flex flex-col items-center justify-center py-12 bg-cover bg-center w-full max-w-lg min-h-[--tg-viewport-height] mx-auto"
-      style={{ backgroundImage: `url('/images/bg.png')` }}
+      className="flex flex-col justify-end bg-cover flex-1"
+      style={{
+        background: 'linear-gradient(to bottom, #575EFF, rgba(14, 203, 255, 0.94))'
+      }}
     >
       <div className="flex flex-col items-center">
         <p className="text-sm font-bold text-center">Welcome Bonus</p>
@@ -18,7 +20,7 @@ export default function FirstTimeScreen({ startGame }: Props) {
             alt="coins"
             className="object-contain w-14 h-14"
           />
-          <span className="text-3xl font-bold text-gradient">5,000 DINOH</span>
+          <span className="text-3xl font-bold text-gradient">5,000</span>
         </div>
         <img src="/images/chest.png" alt="box" className="w-full" />
         <div className="w-full px-12">
