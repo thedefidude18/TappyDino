@@ -42,7 +42,7 @@ export default function Friends() {
     background: 'linear-gradient(to bottom, #575EFF, rgba(14, 203, 255, 0.94))'
   }}
 >
-       <div className="flex flex-col flex-1 w-full h-full px-6 py-8 pb-24 mt-12 modal-body">
+       <div className="flex flex-col flex-1 w-full h-full px-6 py-2 pb-24 mt-10 modal-body">
         <img
           src="/images/friends.png"
           alt="coins"
