@@ -1,208 +1,183 @@
-import { Swiper, SwiperRef, SwiperSlide } from "swiper/react";
-import { EffectFade, Navigation } from "swiper/modules";
-import SwapPrevIcon from "@/components/icons/SwapPrevIcon";
-import SwapNextIcon from "@/components/icons/SwapNextIcon";
-import { useEffect, useRef, useState } from "react";
+import React, { useEffect, useState } from 'react'; 
+import { Loader2Icon } from "lucide-react";
 import { useUserStore } from "@/store/user-store";
-import { compactNumber } from "@/lib/utils";
 import { useQuery } from "@tanstack/react-query";
 import { $http } from "@/lib/http";
 import { UserType } from "@/types/UserType";
-import levelConfig from "@/config/level-config";
 import { uesStore } from "@/store";
-import { Loader2Icon } from "lucide-react";
+import { compactNumber } from "@/lib/utils";
+import levelConfig from "@/config/level-config";
 
 export default function Leaderboard() {
   const { balance, level, ...user } = useUserStore();
-  const [activeIndex, setActiveIndex] = useState(0);
+  const [activeTab, setActiveTab] = useState(0);
   const { levels } = uesStore();
-  const swiperRef = useRef<SwiperRef | null>(null);
 
   const leaderboard = useQuery({
-    queryKey: ["leaderboard", levels?.[activeIndex]?.id],
+    queryKey: ["leaderboard", levels?.[activeTab]?.id],
     queryFn: () =>
       $http.$get<UserType[]>("/clicker/leaderboard", {
-        params: { level_id: levels?.[activeIndex].id },
+        params: { level_id: levels?.[activeTab].id },
       }),
     staleTime: Infinity,
-    enabled: !!levels?.[activeIndex]?.level,
+    enabled: !!levels?.[activeTab]?.level,
   });
 
   useEffect(() => {
     if (level?.level) {
       const index = levels?.findIndex((item) => item.level === level.level);
       if (index !== -1) {
-        setActiveIndex(index);
-        if (swiperRef.current) swiperRef.current.swiper.slideTo(index);
+        setActiveTab(index);
       }
     }
-  }, []);
+  }, [level, levels]);
 
   return (
-    <div
-      className="flex flex-col justify-end bg-cover flex-1 overflow-visible"
+    <div className="flex flex-col justify-end bg-cover flex-1 overflow-visible"
       style={{
         background: 'linear-gradient(to bottom, #575EFF, rgba(14, 203, 255, 0.94))',
-      }}
-    >
-      <div className="flex flex-col flex-1 w-full h-full px-4 py-4 pb-20 mt-8 modal-body">
-        <div className="relative mb-8 overflow-visible">
-          <Swiper
-            ref={swiperRef}
-            spaceBetween={15}
-            modules={[EffectFade, Navigation]}
-            effect={"fade"}
-            className="rounded-[30px] overflow-visible"
-            style={{
-              width: '80%',
-              height: '170px',
-            }}
-            navigation={{
-              enabled: true,
-              nextEl: ".custom-swiper-button-next",
-              prevEl: ".custom-swiper-button-prev",
-            }}
-            onSlideChange={(swiper) => setActiveIndex(swiper.activeIndex)}
-          >
-            {levels?.map((item, i) => (
-              <SwiperSlide key={`slide-${i}`}>
-                <div
-                  className="relative py-3 bg-center bg-cover rounded-[25px] overflow-visible"
-                  style={{
-                    backgroundImage: `url('${levelConfig.bg[item.level]}')`,
-                    height: '100%',
-                  }}
-                >
-                  {/* Trophy Badge positioned directly on the edge */}
-                  <img
-                    src="/images/rank.png" // Replace with your trophy icon path
-                    alt="rank"
-                    className="absolute top-3 right-4 w-10 h-10 transform translate-x-1/2 -translate-y-1/2" // Position trophy icon on the corner edge
-                  />
-
-                  <img
-                    src={levelConfig.frogs[item.level]}
-                    alt="level image"
-                    className="object-contain mx-auto w-28 h-28"
-                    style={{
-                      filter: levelConfig.filter[item.level],
-                    }}
-                  />
-                  <p className="mt-2 text-sm text-center text-white">
-                    {item.name}
-                  </p>
-                  <p className="text-xs text-center text-white/70">
-                    From {compactNumber(item.from_balance)}
-                  </p>
-                </div>
-              </SwiperSlide>
-            ))}
-            <button className="absolute z-[999] left-2 flex items-center justify-center text-white custom-swiper-button-prev top-1/2 -translate-y-1/2 disabled:opacity-30">
-              <SwapPrevIcon />
-            </button>
-            <button className="absolute z-[999] right-2 flex items-center justify-center text-white custom-swiper-button-next top-1/2 -translate-y-1/2 disabled:opacity-30">
-              <SwapNextIcon />
-            </button>
-          </Swiper>
-        </div>
-        {levels?.[activeIndex] &&
-          levels?.[activeIndex]?.level === level?.level && (
-            <div className="mt-1">
-              <div className="flex items-center justify-between gap-2 ">
-                <div className="flex items-center text-2xl font-bold">
-                <span style={{ fontFamily: "'ZCOOL KuaiLe', sans-serif" }}>
-  {level.name}
-</span>
-                </div>
-                <span className="font-medium font-[ZCOOL KuaiLe]">
-                  {compactNumber(balance)}/{compactNumber(level!.to_balance)}
-                </span>
-              </div>
-              <div className="relative mt-2 w-full h-6 rounded-full bg-[#FFDAA3]/10 border border-[#FFDAA3]/10 shadow-lg overflow-hidden">
-  {/* Outer Glow */}
-  <div className="absolute inset-0 rounded-full border-2 border-[#F7B87D]/30 animate-pulse" />
-
-  {/* Progress bar */}
-  <div
-    className="relative h-full bg-gradient-to-r from-[#FFC371] to-[#ffee00] rounded-sm"
-    style={{
-      width: `${(balance / level.to_balance) * 100}%`,
-    }}
-  >
-    {/* Optional progress percentage text */}
-    <span className="absolute right-2 top-1/2 transform -translate-y-1/2 text-white font-bold text-sm">
-      {Math.round((balance / level.to_balance) * 100)}%
-    </span>
-  </div>
-</div>
-</div>
-          )}
-       {/* User List for Selected Tab */}
-<div className="relative flex-1 mt-7">
-  {/* Add a style block for global styles */}
-  <style>
-    {`
-      .scrollbar-hide::-webkit-scrollbar {
-        display: none; /* Chrome, Safari, Opera */
-      }
-      .scrollbar-hide {
-        -ms-overflow-style: none;  /* IE and Edge */
-        scrollbar-width: none;     /* Firefox */
-      }
-    `}
-  </style>
-
-  <div className="absolute inset-0 w-full h-full divide-y divide-[#D9D9D9]/10 overflow-y-auto scrollbar-hide">
-    {leaderboard.isLoading ? (
-      <div className="flex items-center justify-center h-full">
-        <Loader2Icon className="w-8 h-8 animate-spin text-primary" />
-      </div>
-    ) : leaderboard.data && leaderboard.data.length > 0 ? (
-      leaderboard.data.map((item, key) => (
-        <div
-          key={key}
-          className="flex items-center py-1 px-4 gap-2 mb-4 rounded-lg"
+      }}>
+      <div className="flex flex-col flex-1 w-full h-full px-4 py-2 pb-20 mt-8">
+        
+      {/* Tabs Ttitle */}
+      <img
+          src="/images/rank.png"
+          alt="rank"
+          className="object-contain w-20 h-20 mx-auto"
+        />
+        <h1
           style={{
-            backgroundColor: '#FFFFFF',
-            borderRadius: '15px',
-            padding: '0.6rem',
-            boxShadow: '0 6px 0 #AC36A0, 0 8px 15px rgba(0, 0, 0, 0)',
+            fontFamily: "'ZCOOL KuaiLe', sans-serif",
+            fontSize: "1.3rem",
+            textAlign: "center",
+            marginTop: "0.4rem",
+            color: "#ffffff",
           }}
         >
-          <span className="w-5 text-left text-black font-bold">{key + 1}</span>
-          <span className="text-black font-medium">
-            {item.first_name} {item.last_name}
-          </span>
-          {key < 3 && (
-            <img
-              src="/images/rank.png"
-              alt="rank"
-              className="w-5 h-5 ml-2 text-gold"
-            />
-          )}
-          <div className="flex items-center gap-1 ml-auto">
-            <img
-              src="/images/coin.png"
-              alt="coin"
-              className="object-contain w-4 h-4"
-            />
-            <span className="font-md text-black">
-              {compactNumber(item.balance)}
-            </span>
-          </div>
-        </div>
-      ))
-    ) : (
-      <div className="flex items-center justify-center h-full text-white">
-        No data
-      </div>
-    )}
-  </div>
-</div>
+          LEADERBOARD
+        </h1>
 
-        {/* Show user's data if they are not in the leaderboard */}
-        {levels &&
-          levels[activeIndex]?.level === level?.level &&
+        
+        
+        
+        
+        
+        {/* Tabs Container */}
+        <div className="flex justify-between mb-6 px-2">
+          {levels?.slice(0, 5).map((item, index) => (
+            <button
+              key={`tab-${index}`}
+              onClick={() => setActiveTab(index)}
+              className={`relative flex flex-col items-center w-14 py-2 rounded-[20px] transition-all ${
+                activeTab === index
+                  ? 'bg-yellow-400 bg-opacity-80' // Active tab style with background highlight
+                  : 'opacity-70 hover:opacity-90'   // Non-active tabs with reduced opacity
+              }`}
+              style={{
+                border: activeTab === index ? '2px solid #FFD700' : '2px solid transparent',
+              }}
+            >
+              <div className="relative w-12 h-12 mb-1">
+                <img
+                  src={levelConfig.frogs[item.level]}
+                  alt={item.name}
+                  className="w-full h-full object-contain rounded-full"
+                  style={{
+                    filter: levelConfig.filter[item.level],
+                  }}
+                />
+                {activeTab === index && (
+                  <div className="absolute -bottom-1 left-1/2 transform -translate-x-1/2 w-10 h-1 bg-yellow-400 rounded-full" />
+                )}
+              </div>
+              {/* Caption Text */}
+              <span className="text-[8px] text-white text-center leading-tight">
+                {item.name}
+              </span>
+            </button>
+          ))}
+        </div>
+
+        {/* Active Level Progress */}
+        {levels?.[activeTab] && levels?.[activeTab]?.level === level?.level && (
+          <div className="mb-6">
+            <div className="flex items-center justify-between gap-2">
+              <div className="flex items-center text-1xl font-medium text-white">
+                <span style={{ fontFamily: "'ZCOOL KuaiLe', sans-serif" }}>
+                  {level.name}
+                </span>
+              </div>
+              <span className="font-medium text-white">
+                {compactNumber(balance)}/{compactNumber(level.to_balance)}
+              </span>
+            </div>
+            <div className="relative mt-2 w-full h-4 rounded-full bg-[#FFDAA3]/10 border border-[#FFDAA3]/10 overflow-hidden">
+              <div className="absolute inset-0 rounded-full border-2 border-[#F7B87D]/30 animate-pulse" />
+              <div
+                className="relative h-full bg-gradient-to-r from-[#69ffa5] to-[#ffee00] rounded-sm"
+                style={{
+                  width: `${(balance / level.to_balance) * 100}%`,
+                }}
+              >
+                <span className="absolute right-2 top-1/2 transform -translate-y-1/2 text-white font-bold text-sm">
+                  {Math.round((balance / level.to_balance) * 100)}%
+                </span>
+              </div>
+            </div>
+          </div>
+        )}
+
+        {/* Leaderboard List */}
+        <div className="flex-1 overflow-y-auto">
+          {leaderboard.isLoading ? (
+            <div className="flex items-center justify-center h-full">
+              <Loader2Icon className="w-8 h-8 animate-spin text-primary" />
+            </div>
+          ) : leaderboard.data && leaderboard.data.length > 0 ? (
+            <div className="space-y-4">
+              {leaderboard.data.map((item, key) => (
+                <div
+                  key={key}
+                  className="flex items-center py-1 px-4 gap-2 bg-white rounded-lg"
+                  style={{
+                    borderRadius: '15px',
+                    padding: '0.5rem',
+                    boxShadow: '0 6px 0 #AC36A0, 0 8px 15px rgba(0, 0, 0, 0)',
+                  }}
+                >
+                  <span className="w-5 text-left text-black font-medium">{key + 1}</span>
+                  <span className="text-black font-medium">
+                    {item.first_name} {item.last_name}
+                  </span>
+                  {key < 3 && (
+                    <img
+                      src="/images/rank.png"
+                      alt="rank"
+                      className="w-5 h-5 ml-2"
+                    />
+                  )}
+                  <div className="flex items-center gap-1 ml-auto">
+                    <img
+                      src="/images/coin.png"
+                      alt="coin"
+                      className="w-4 h-4 object-contain"
+                    />
+                    <span className="font-medium text-black">
+                      {compactNumber(item.balance)}
+                    </span>
+                  </div>
+                </div>
+              ))}
+            </div>
+          ) : (
+            <div className="flex items-center justify-center h-full text-white">
+              No data
+            </div>
+          )}
+        </div>
+
+        {/* Current User Position */}
+        {levels && levels[activeTab]?.level === level?.level &&
           !leaderboard.data?.some((item) => item.id === user.id) && (
             <div className="mt-4 flex items-center py-2 gap-2.5 px-4 bg-[#FFAB5D1A] rounded-xl">
               <span className="w-5 text-right text-primary">+99</span>
@@ -211,9 +186,9 @@ export default function Leaderboard() {
                 <img
                   src="/images/coin.png"
                   alt="coin"
-                  className="object-contain w-4 h-4"
+                  className="w-4 h-4 object-contain"
                 />
-                <span>{balance}</span>
+                <span className="text-white">{compactNumber(balance)}</span>
               </div>
             </div>
           )}
