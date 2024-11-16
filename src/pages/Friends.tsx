@@ -1,4 +1,5 @@
 import CopyIcon from "@/components/icons/CopyIcon";
+import ReferralTaskDrawer from "@/components/ReferralTaskDrawer"; // Correct path
 import { Button } from "@/components/ui/button";
 import { $http } from "@/lib/http";
 import { compactNumber } from "@/lib/utils";
@@ -6,9 +7,10 @@ import { uesStore } from "@/store";
 import { useUserStore } from "@/store/user-store";
 import { PaginationResponse } from "@/types/Response";
 import { UserType } from "@/types/UserType";
+import { ReferralTaskType } from "@/types/TaskType";
 import { useQuery } from "@tanstack/react-query";
 import { useCopyToClipboard } from "@uidotdev/usehooks";
-import { useMemo } from "react";
+import { useMemo, useState } from "react";
 import { toast } from "react-toastify";
 
 const shareMessage = encodeURI("Play Tappy Dino with me!");
@@ -17,8 +19,8 @@ export default function Friends() {
   const [, copy] = useCopyToClipboard();
   const { telegram_id } = useUserStore();
   const { referral } = uesStore();
-
-  const user = useUserStore();
+  const [currentTask, setCurrentTask] = useState<ReferralTaskType | null>(null);
+  const [drawerOpen, setDrawerOpen] = useState(false);
 
   const referralLink = useMemo(
     () => `${import.meta.env.VITE_BOT_URL}/?startapp=ref${telegram_id}`,
@@ -28,6 +30,11 @@ export default function Friends() {
   const referredUsers = useQuery({
     queryKey: ["referredUsers"],
     queryFn: () => $http.$get<PaginationResponse<UserType>>("/referred-users"),
+  });
+
+  const referralTasks = useQuery({
+    queryKey: ["referral-tasks"],
+    queryFn: () => $http.$get<PaginationResponse<ReferralTaskType>>("/referral-tasks"),
   });
 
   return (
@@ -66,39 +73,37 @@ export default function Friends() {
           You and your friends will receive DINOH bonus!
         </h1>
         <div className="mt-4 space-y-2">
-          <div className="space-y-4">
-            <button
-              className="flex items-center w-full gap-4 rounded-lg"
-              style={{
-                backgroundColor: "#FFFFFF",
-                borderRadius: "15px",
-                padding: "0.4rem 1rem",
-                boxShadow: "0 6px 0 #AC36A0, 0 8px 15px rgba(0, 0, 0, 0.2)",
-                position: "relative",
-                transform: "translateY(-3px)",
-              }}
-            >
-              <img
-                src="/images/chest.png"
-                alt="chest"
-                className="object-contain w-9 h-9"
-              />
-              <div className="text-sm font-medium text-left text-black">
-                <p>Invite a friend</p>
-                <div className="flex items-center space-x-1">
-                  <img
-                    src="/images/coin.png"
-                    alt="coin"
-                    className="object-contain w-5 h-5"
-                  />
-                  <span className="font-bold text-black">
-                    +{referral.base.welcome.toLocaleString()}
-                  </span>
-                  <span className="text-sm text-black">for you and your friend</span>
-                </div>
+          <button
+            className="flex items-center w-full gap-4 rounded-lg"
+            style={{
+              backgroundColor: "#FFFFFF",
+              borderRadius: "15px",
+              padding: "0.4rem 1rem",
+              boxShadow: "0 6px 0 #AC36A0, 0 8px 15px rgba(0, 0, 0, 0.2)",
+              position: "relative",
+              transform: "translateY(-3px)",
+            }}
+          >
+            <img
+              src="/images/chest.png"
+              alt="chest"
+              className="object-contain w-9 h-9"
+            />
+            <div className="text-sm font-medium text-left text-black">
+              <p>Invite a friend</p>
+              <div className="flex items-center space-x-1">
+                <img
+                  src="/images/coin.png"
+                  alt="coin"
+                  className="object-contain w-5 h-5"
+                />
+                <span className="font-bold text-black">
+                  +{referral.base.welcome.toLocaleString()}
+                </span>
+                <span className="text-sm text-black">for you and your friend</span>
               </div>
-            </button>
-          </div>
+            </div>
+          </button>
         </div>
         <div className="relative flex-1">
           <p className="mt-8 text-sm font-bold uppercase">
@@ -152,28 +157,14 @@ export default function Friends() {
             </div>
           )}
         </div>
-        <div className="flex gap-3" style={{ marginTop: "1rem" }}>
-          <Button
-            className="flex-shrink-0"
-            onClick={() => {
-              copy(referralLink);
-              toast.success("Referral link copied to clipboard");
-            }}
-          >
-            <CopyIcon className="w-5 h-5" />
-          </Button>
-          <Button
-            className="flex-1"
-            onClick={() =>
-              Telegram.WebApp.openTelegramLink(
-                `https://t.me/share/url?text=${shareMessage}&url=${referralLink}`
-              )
-            }
-          >
-            Invite a friend
-          </Button>
-        </div>
       </div>
+
+      {/* Referral Task Drawer */}
+      <ReferralTaskDrawer
+        open={drawerOpen}
+        task={currentTask}
+        onOpenChange={setDrawerOpen}
+      />
     </div>
   );
 }
