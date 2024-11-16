@@ -1,34 +1,55 @@
-import CopyIcon from "@/components/icons/CopyIcon";
-import { Button } from "@/components/ui/button";
+import { useEffect, useState } from "react";
+import { useQuery } from "@tanstack/react-query";
+import { toast } from "react-toastify";
 import { $http } from "@/lib/http";
-import { compactNumber } from "@/lib/utils";
 import { uesStore } from "@/store";
 import { useUserStore } from "@/store/user-store";
+import ReferralTaskDrawer from "./ReferralTaskDrawer";
+import CopyIcon from "@/components/icons/CopyIcon";
+import { Button } from "@/components/ui/button";
+import { compactNumber } from "@/lib/utils";
+import { useCopyToClipboard } from "@uidotdev/usehooks";
+import { ReferralTaskType } from "@/types/TaskType";
 import { PaginationResponse } from "@/types/Response";
 import { UserType } from "@/types/UserType";
-import { useQuery } from "@tanstack/react-query";
-import { useCopyToClipboard } from "@uidotdev/usehooks";
-import { useMemo } from "react";
-import { toast } from "react-toastify";
 
 const shareMessage = encodeURI("Play Tappy Dino with me!");
 
 export default function Friends() {
   const [, copy] = useCopyToClipboard();
   const { telegram_id } = useUserStore();
-  const { referral } = uesStore();
+  const { referral, totalReferals } = uesStore();
+  const referralLink = `${import.meta.env.VITE_BOT_URL}/?startapp=ref${telegram_id}`;
 
-  const user = useUserStore();
+  // Manage referral task drawer
+  const [drawerOpen, setDrawerOpen] = useState(false);
+  const [currentTask, setCurrentTask] = useState<ReferralTaskType | null>(null);
 
-  const referralLink = useMemo(
-    () => `${import.meta.env.VITE_BOT_URL}/?startapp=ref${telegram_id}`,
-    [telegram_id]
-  );
-
+  // Fetch referred users
   const referredUsers = useQuery({
     queryKey: ["referredUsers"],
     queryFn: () => $http.$get<PaginationResponse<UserType>>("/referred-users"),
   });
+
+  // Referral Task Mock Data
+  const referralTask: ReferralTaskType = {
+    id: "123",
+    title: "Invite 5 friends",
+    reward: 50,
+    is_completed: false,
+    number_of_referrals: 5,
+  };
+
+  // Open drawer when referral task is completed
+  useEffect(() => {
+    if (
+      totalReferals >= referralTask.number_of_referrals && 
+      !referralTask.is_completed
+    ) {
+      setCurrentTask(referralTask);
+      setDrawerOpen(true);
+    }
+  }, [totalReferals]);
 
   return (
     <div
@@ -37,10 +58,15 @@ export default function Friends() {
         background: "linear-gradient(to bottom, #575EFF, rgba(14, 203, 255, 0.94))",
       }}
     >
+      <ReferralTaskDrawer
+        task={currentTask}
+        open={drawerOpen}
+        onOpenChange={(isOpen) => setDrawerOpen(isOpen)}
+      />
       <div className="flex flex-col flex-1 w-full h-full px-6 py-1 pb-24 mt-5 modal-body">
         <img
           src="/images/friends.png"
-          alt="coins"
+          alt="friends"
           className="object-contain w-32 h-32 mx-auto"
         />
         <h1
