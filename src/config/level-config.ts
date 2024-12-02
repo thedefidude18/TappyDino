@@ -1,6 +1,6 @@
 const levelConfig = {
   frogs: {
-    1: "/images/levels/coin.png",
+    1: "/images/levels/coin1.gif",
     2: "/images/levels/coin.png",
     3: "/images/levels/coin.png",
     4: "/images/levels/coin.png",
