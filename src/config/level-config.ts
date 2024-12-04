@@ -1,10 +1,10 @@
 const levelConfig = {
   frogs: {
-    1: "/images/levels/coin1.gif",
-    2: "/images/levels/coin2.gif",
-    3: "/images/levels/coin3.gif",
-    4: "/images/levels/coin4.gif",
-    5: "/images/levels/coin5.gif",
+    1: "/images/levels/tall455DINO.gif",
+    2: "/images/levels/tall455DINO.gif",
+    3: "/images/levels/tall455DINO.gif",
+    4: "/images/levels/tall455DINO.gif",
+    5: "/images/levels/tall455DINO.gif",
   } as Record<number, string>,
 
   filter: {
