@@ -92,30 +92,10 @@ export default function UserTap(props: React.HTMLProps<HTMLDivElement>) {
           <img
             src={levelConfig.frogs[user.level?.level || 1]}
             alt="level image"
-            className="object-fill w-50 h-70"
+            className="object-fill w-30 h-40"
             style={{ filter: levelConfig.filter[user.level?.level || 1] }}
           />
         </button>
-
-        <style>
-          {`
-            @keyframes floating {
-              0% {
-                transform: translateY(0px);
-              }
-              50% {
-                transform: translateY(-10px);
-              }
-              100% {
-                transform: translateY(0px);
-              }
-            }
-
-            .floating {
-              animation: floating 3s ease-in-out infinite;
-            }
-          `}
-        </style>
       </div>
 
       <div ref={userAnimateRef} className="user-tap-animate">
