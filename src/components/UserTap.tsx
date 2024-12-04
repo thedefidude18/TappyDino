@@ -84,11 +84,7 @@ export default function UserTap(props: React.HTMLProps<HTMLDivElement>) {
           ref={userTapButtonRef}
           className="flex items-center justify-center mx-auto transition-all rounded-full outline-none select-none disabled:opacity-80 disabled:cursor-not-allowed floating"
           disabled={user.available_energy < user.earn_per_tap}
-          onPointerUp={tabMe}
-          style={{
-            animation: "floating 2s ease-in-out infinite",
-          }}
-        >
+          onPointerUp={tabMe}>
           <img
             src={levelConfig.frogs[user.level?.level || 1]}
             alt="level image"
